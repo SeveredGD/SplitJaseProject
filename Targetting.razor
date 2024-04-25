@@ -8,18 +8,6 @@ if counttype "gold coin" backpack as total
         overhead "Warning: {{total}} gold and no weight!" 34
     endif
 endif
-    
-//red recall
-if insysmsg "Now tracking" and overLand = 1
-            overhead "Reds baby - we're leaving"
-            hotkey '> Interrupt'
-            wait 250
-            cast 'Recall'
-            waitfortarget
-            target 0x44C6D685
-endif
-
-@setvar! jaseDebugMode 0
 
 if not varexist lastCannotBeSeen
     @setvar! lastCannotBeSeen 0
@@ -29,8 +17,6 @@ if lastCannotBeSeen != 0 and dead lastCannotBeSeen
     @setvar! lastCannotBeSeen 0
     @setvar! lastCannotBeSeenLoopIndex 0
 endif
-
-
 
 if targetexists harmful
     hotkey "Cancel current target"
@@ -299,7 +285,7 @@ elseif find myKillTarget -1 -1 12 as killy
             endif
         @setvar myPreviousKillTarget myKillTarget
     endif
-    script 'wizgrim spells'
+    script 'WizardSpells'
 else
     overhead "Out of range" 34
 endif
