@@ -1,4 +1,5 @@
-overhead "Turned on Targetting"
+//overhead "Turned on Targetting"
+
 //targetting
 if diffhits >= hpCheckToTriggerGreaterHealSpell
     hotkey '> Interrupt'
@@ -158,16 +159,13 @@ elseif find myKillTarget -1 -1 12 as killy
         // do nothing
         overhead "did nothing in targetting line 155"
     else      
-        overhead "We got to line 156"
+        
         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
-         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
-         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
         if DexxerTamerClass = 1
         overhead "Moving to BandageScript"
            script "BandageChivAndVet"
         endif
         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
-        overhead "We got to line 166"
         ### If cursed and drained send back to spells
 
         if inlist myManaVampireTargets myKillTarget
@@ -304,4 +302,3 @@ if timer killTargetTimer >= cdKillTarget
     removelist myManaDrainTargets
     removelist myManaVampireTargets
 endif
-overhead "We got to line 315"
