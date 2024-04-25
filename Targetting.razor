@@ -1,6 +1,10 @@
+overhead "Turned on Targetting"
 //targetting
-
-#### This will send in pet for out of range targets
+if diffhits >= hpCheckToTriggerGreaterHealSpell
+    hotkey '> Interrupt'
+    script "HealingAndBuffing"
+endif
+    #### This will send in pet for out of range targets
 @setvar! patrolPetEvenIfLastTargetIsBeyondEightTiles 1
 
 if counttype "gold coin" backpack as total
@@ -152,7 +156,8 @@ if lastCannotBeSeen = myKillTarget
 elseif find myKillTarget -1 -1 12 as killy
     if myKillTarget = myPreviousKillTarget
         // do nothing
-    else        
+        overhead "did nothing in targetting line 155"
+    else      
         overhead "We got to line 156"
         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
          ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
@@ -164,9 +169,7 @@ elseif find myKillTarget -1 -1 12 as killy
         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
         overhead "We got to line 166"
         ### If cursed and drained send back to spells
-        if inlist myManaVampireTargets myKillTarget and inlist myManaDrainTargets myKillTarget
-            script "WizardSpells"
-        endif
+
         if inlist myManaVampireTargets myKillTarget
             overhead "We already mana vampired this guy" 88
             // do nothing
@@ -264,6 +267,7 @@ elseif find myKillTarget -1 -1 12 as killy
                 endif
             else
                 hotkey '> Interrupt'
+                script 'WizardSpells'
             endif
             if targetexists harmful
                 hotkey "Cancel current target"
