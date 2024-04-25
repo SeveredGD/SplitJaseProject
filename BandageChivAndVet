@@ -385,3 +385,4 @@ if not timerexists sCheck
     createtimer sCheck
     settimer sCheck 11000
 endif
+replay
