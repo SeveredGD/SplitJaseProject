@@ -1,3 +1,9 @@
+### Reset Class
+
+@setvar! NecromancerClass 1
+@setvar! TamerMageClass 1
+@setvar! DexxerTamerClass 1
+
 # continue to fight the same target even after summons
 # target not seen - (warmode maybe?)
 @setvar! minimumWaitForPing 200
@@ -234,6 +240,8 @@ if skill "Magery" >= 80 and "Necromancy" >= 80
   elseif skill "Magery" >= 80 and "Taming" >= 80
   @setvar! TamerMageClass 1
   elseif skill "Tactics" >= 80 and "Taming" >= 80
-  setvar! DexxerTamerClass 1
+  @setvar! DexxerTamerClass 1
 endif
 
+###send off to targetting
+script 'targetting'
