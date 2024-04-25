@@ -242,6 +242,166 @@ if skill "Magery" >= 80 and "Necromancy" >= 80
   elseif skill "Tactics" >= 80 and "Taming" >= 80
   @setvar! DexxerTamerClass 1
 endif
+@setvar! jaseDebugMode 0
+
+##################################################################
+# 
+#   Hopefully you do not have to edit after this :)
+#
+##################################################################
+
+if didYouSetupIgnoreMobs = 0 and useFindTypeToTargetMonster = 0
+    overhead "For this script to work, make sure you add a friends list called: IgnoreMobs" 34
+    sysmsg  "For this script to work, make sure you add a friends list called: IgnoreMobs" 34
+    wait 1500
+    overhead "Click Friends Tab -> [checkmark] enabled -> [checkmark] Next/Prev Target ignores 'IgnoreMobs'" 88
+    sysmsg "Click Friends Tab -> [checkmark] enabled -> [checkmark] Next/Prev Target ignores 'IgnoreMobs'" 88
+    wait 5000
+    overhead "If everything is setup, update didYouSetupIgnoreMobs to 1"
+    sysmsg "If everything is setup, update didYouSetupIgnoreMobs to 1"
+    wait 5000
+    replay
+endif
+
+
+@setvar! tamerModeEngaged 0
+
+if not gumpexists 622436516 and skill "Necromancy" >= 50
+    say '[NecromancyHotbar'
+    wait 500
+endif
+
+if not timerexists retryBasedOnTargetNotSeenTimer
+    settimer retryBasedOnTargetNotSeenTimer cdRetryBasedOnTargetNotSeen
+endif
+
+if not timerexists reactiveArmorTimer
+    createtimer reactiveArmorTimer
+    settimer reactiveArmorTimer cdMagicShield
+endif
+
+if not timerexists cleansingBrewTimer
+    settimer cleansingBrewTimer cdCleansingBrew
+endif
+
+if not timerexists magicShieldTimer
+    createtimer magicShieldTimer
+    settimer magicShieldTimer cdMagicShield
+endif
+
+if not timerexists magicMushroomTimer
+    createtimer magicMushroomTimer
+    settimer magicMushroomTimer cdMushroom
+endif
+
+if not timerexists magicArrowTimer
+    createtimer magicArrowTimer
+    settimer magicArrowTimer cdMagicArrow
+endif
+
+if not timerexists lightningTimer
+    createtimer lightningTimer
+    settimer lightningTimer cdLightning
+endif
+
+if not timerexists chainLightningTimer
+    settimer chainLightningTimer cdChainLightning
+endif
+
+if not timerexists harmTimer
+    createtimer harmTimer
+    settimer harmTimer cdHarm
+endif
+
+if not timerexists autoHealTamerPet
+    createtimer autoHealTamerPet
+    settimer autoHealTamerPet cdAutoHealTamerPet
+endif
+
+if not timerexists fireballTimer
+    createtimer fireballTimer
+    settimer fireballTimer cdFireball
+endif
+
+if not timerexists evilOmenTimer
+    createtimer evilOmenTimer
+    settimer evilOmenTimer cdEvilOmen
+endif
+
+if not timerexists vampiricEmbraceTimer
+    createtimer vampiricEmbraceTimer
+    settimer vampiricEmbraceTimer cdVampiricEmbrace
+endif
+
+if not timerexists corpseSkinTimer
+    createtimer corpseSkinTimer
+    settimer corpseSkinTimer cdCorpseSkin
+endif
+
+if not timerexists mindRotTimer
+    createtimer mindRotTimer
+    settimer mindRotTimer cdMindRot
+endif
+
+if not timerexists meditiationTimer
+    createtimer meditiationTimer
+    settimer meditiationTimer cdMeditation
+endif
+
+if not timerexists killTargetTimer
+    createtimer killTargetTimer
+    settimer killTargetTimer cdKillTarget
+endif
+
+if not timerexists witherTimer
+    createtimer witherTimer
+    settimer witherTimer cdWither
+endif
+
+if not timerexists vengefulSpiritTimer
+    createtimer vengefulSpiritTimer
+    settimer vengefulSpiritTimer cdVengefulSpirit
+endif
+
+if not timerexists bloodOathTimer
+    createtimer bloodOathTimer
+    settimer bloodOathTimer cdBloodOath
+endif
+
+if not timerexists painSpikeTimer
+    createtimer painSpikeTimer
+    settimer painSpikeTimer cdPainSpike
+endif
+
+if not timerexists poisonStrikeTimer
+    createtimer poisonStrikeTimer
+    settimer poisonStrikeTimer cdPoisonStrike
+endif
+
+if not timerexists preventOverheadSpamTimer
+    createtimer preventOverheadSpamTimer
+    settimer preventOverheadSpamTimer cdPreventOverheadSpam
+endif
+
+@setvar! cdPreventSpamNecroAbilities 750
+if not timerexists preventSpamNecroAbilitiesTimer
+    createtimer preventSpamNecroAbilitiesTimer
+    settimer preventSpamNecroAbilitiesTimer cdPreventSpamNecroAbilities
+endif
+    
+if followers = 0
+    @setvar! followCount 0
+elseif followers = 1
+    @setvar! followCount 1
+elseif followers = 2
+    @setvar! followCount 2
+elseif followers = 3
+    @setvar! followCount 3
+elseif followers = 4
+    @setvar! followCount 4
+elseif followers = 5
+    @setvar! followCount 5
+endif
 
 ###send off to targetting
 script 'Targetting'
