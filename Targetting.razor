@@ -138,6 +138,11 @@ endif
 if not varexist lastCannotBeSeenLoopIndex
     @setvar! lastCannotBeSeenLoopIndex 0
 endif
+if find myKillTarget -1 -1 12 as killy and followers >= 1
+    say 'All kill'
+    wft 250
+    target myKillTarget
+endif
 if lastCannotBeSeen = myKillTarget
     if timer preventOverheadSpamTimer >= cdPreventOverheadSpam
         overhead "Target not seen, waiting.."  34
@@ -157,7 +162,6 @@ if lastCannotBeSeen = myKillTarget
 elseif find myKillTarget -1 -1 12 as killy
     if myKillTarget = myPreviousKillTarget
         // do nothing
-        overhead "did nothing in targetting line 155"
     else      
         
         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
