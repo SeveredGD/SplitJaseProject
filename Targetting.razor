@@ -146,11 +146,9 @@ if not listexists myManaVampireTargets
     createlist myManaVampireTargets
 endif
 
-
 if not varexist lastCannotBeSeenLoopIndex
     @setvar! lastCannotBeSeenLoopIndex 0
 endif
-
 
 if lastCannotBeSeen = myKillTarget
     if timer preventOverheadSpamTimer >= cdPreventOverheadSpam
@@ -166,21 +164,25 @@ if lastCannotBeSeen = myKillTarget
         settimer retryBasedOnTargetNotSeenTimer 0    
         @setvar! lastCannotBeSeen 0
     else
-        replay
+    replay
     endif
-    
 elseif find myKillTarget -1 -1 12 as killy
     if myKillTarget = myPreviousKillTarget
         // do nothing
-    else
-        
+    else        
         // Herding using crook
         if skill "Herding" > 0 and findtype 3713 backpack as jrook
             dclick jrook
             wft 500
             target killy
         endif
-
+        ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
+         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
+         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
+        if DexxerTamerClass = 1
+            script "BandageChivAndVet"
+        endif
+        ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
         if inlist myManaVampireTargets myKillTarget
             overhead "We already mana vampired this guy" 88
             // do nothing
