@@ -1,7 +1,4 @@
 //targetting
-
-
-
 # continue to fight the same target even after summons
 # target not seen - (warmode maybe?)
 @setvar! minimumWaitForPing 200
@@ -36,129 +33,6 @@
 # Update this variable to 0 for target nearest
 @setvar! setThisAsOneIfYouWantToTargetYourOwnKillOrItWillTargetClosestMonster 0
 
-################################
-###### Random abilities
-################
-@setvar! automaticallySkinCorpses 1
-@setvar! manaReserve 35
-@setvar! cdRetryBasedOnTargetNotSeen 2000
-
-# Ultimate Summoner Hotkey Choose your summons by Jaseowns
-# UO Outlands
-# This is part of the mage bot, but you can have it
-# as its own hotkey
-
-###############
-###  Choose your summons
-######
-@setvar! breakSpellCastAndResummonIfLessThanXFollowers 0
-@setvar! renamePets 0
-
-
-###############
-###  Choose your spells
-######
-@setvar! castCurse 1
-@setvar! castManadrain 1
-@setvar! castManaVampire 0
-@setvar! castLightning 1
-@setvar! castChainLightning 0
-@setvar! castFireball 1
-@setvar! castHarm 0
-@setvar! castMagicArrow 0
-# When other spells are on cooldown, do you want to cast Ebolt, MindBlast, Flamestrike or all three
-@setvar! castEbolt 0
-@setvar! castMindBlast 0
-@setvar! castFlamestrike 1
-
-
-################################
-###### Heal Controllers
-################
-@setvar! hpCheckToTriggerGreaterHealSpell 25
-@setvar! hpCheckToTriggerMiniEmergencyHealSpell 60
-@setvar! hpCheckToTriggerHealPotion 45
-        
-################################
-###### Potion Controllers
-################
-@setvar! automaticallyDrinkStrPotIfOverWeight 1
-# Drink Magic resist potion (only if magic shield buff not found)
-@setvar! automaticallyDrinkMagicPot 1
-@setvar! automaticallyDrinkHealPot 1
-@setvar! automaticallyDrinkCurePot 1
-#@setvar! automaticallyDrinkRefreshPot 0
-
-@setvar! hpCheckToTriggerCurePotion 45
-#@setvar! stamDiffCheckToTriggerRedPotion 10
-
-
-### Buffs
-@setvar! castBless 1
-@setvar! castArchProtection 1
-@setvar! castMagicShield 1
-@setvar! castReactiveArmor 1
-
-if skill "Inscription" >= 50
-    @setvar! castBless 1
-    @setvar! castArchProtection 1
-endif
-
-
-###############
-###  Choose your necro spells (ignored if less then required necro skill)
-######
-@setvar! castEvilOmen 1
-@setvar! castCorpseSkin 1
-@setvar! castVampiricEmbrace 1
-@setvar! castMindRot 1
-@setvar! castPoisonStrike 0
-@setvar! castBloodOath 0
-@setvar! castPainSpike 0
-@setvar! requireWitherBeforeSummons 0
-
-###############
-### Edit these cooldowns to match your wizard grimoire
-######
-@setvar! canYouMakeAMushroom 1
-@setvar! cdLightning 20000
-@setvar! cdChainLightning 60000
-@setvar! cdMagicArrow 20000
-@setvar! cdHarm 20000
-@setvar! cdFireball 60000
-
-@setvar! cdAutoHealTamerPet 15000
-
-###############
-### Necro Cooldowns
-######
-@setvar! cdEvilOmen 30500
-@setvar! cdVampiricEmbrace 30500
-@setvar! cdCorpseSkin 30500
-@setvar! cdMindRot 30500
-@setvar! cdWither 30500
-@setvar! cdVengefulSpirit 30500
-@setvar! cdBloodOath 30500
-@setvar! cdPainSpike 30500
-@setvar! cdPoisonStrike 30500
-
-#### Buff Cooldowns
-@setvar! cdMushroom 61000
-@setvar! cdMagicShield 61000
-@setvar! cdReactiveArmor 61000
-@setvar! cdMeditation 10000
-@setvar! cdMeditationMini 3000
-@setvar! cdKillTarget 60000
-
-#### Random cooldowns
-@setvar! cdPreventOverheadSpam 3000
-@setvar! cdSkinningCheck 3000
-@setvar! cdCleansingBrew 125000
-
-#### Mushroom count (I like a lot of shroomies)
-@setvar! makeThisManyMushroomsCount 15
-@setvar! butOnlyIHaveLessThenThisCount 5
-
 #### This will send in pet for out of range targets
 @setvar! patrolPetEvenIfLastTargetIsBeyondEightTiles 1
 
@@ -168,11 +42,6 @@ if counttype "gold coin" backpack as total
     endif
 endif
     
-#### Pet Names, unique to you
-if not listexists petNameList
-    createlist petNameList
-endif
-
 //red recall
 if insysmsg "Now tracking" and overLand = 1
             overhead "Reds baby - we're leaving"
