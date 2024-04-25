@@ -163,6 +163,10 @@ elseif find myKillTarget -1 -1 12 as killy
         endif
         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
         overhead "We got to line 166"
+        ### If cursed and drained send back to spells
+        if inlist myManaVampireTargets myKillTarget and inlist myManaDrainTargets myKillTarget
+            script "WizardSpells"
+        endif
         if inlist myManaVampireTargets myKillTarget
             overhead "We already mana vampired this guy" 88
             // do nothing
