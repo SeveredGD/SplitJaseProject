@@ -98,10 +98,8 @@ elseif useTargetSystem = 1
         
         overhead "● ▼▼ HERE ▼▼ ●" 88 lasttarget
     endif
-
     @setvar myKillTarget lasttarget 
 endif
-
 
 if not varexist myPreviousKillTarget
     @setvar myPreviousKillTarget 0     
@@ -135,7 +133,6 @@ endif
 if not varexist lastCannotBeSeenLoopIndex
     @setvar! lastCannotBeSeenLoopIndex 0
 endif
-
 if lastCannotBeSeen = myKillTarget
     if timer preventOverheadSpamTimer >= cdPreventOverheadSpam
         overhead "Target not seen, waiting.."  34
@@ -157,18 +154,16 @@ elseif find myKillTarget -1 -1 12 as killy
         // do nothing
     else        
         // Herding using crook
-        if skill "Herding" > 0 and findtype 3713 backpack as jrook
-            dclick jrook
-            wft 500
-            target killy
-        endif
+        overhead "We got to line 157"
         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
          ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
          ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
-        if DexxerTamerClass = 1
-            script "BandageChivAndVet"
-        endif
+        #if DexxerTamerClass 1
+        #   script "BandageChivAndVet"
+        #overhead Moving to BandageScript
+        #endif
         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
+        overhead "We got to line 166"
         if inlist myManaVampireTargets myKillTarget
             overhead "We already mana vampired this guy" 88
             // do nothing
@@ -286,6 +281,7 @@ elseif find myKillTarget -1 -1 12 as killy
         @setvar myPreviousKillTarget myKillTarget
     endif
     script 'WizardSpells'
+    overhead "Sending to Wizard spells"
 else
     overhead "Out of range" 34
 endif
@@ -313,7 +309,4 @@ if timer killTargetTimer >= cdKillTarget
     removelist myManaDrainTargets
     removelist myManaVampireTargets
 endif
-   
-if autoBotEnabled = 1
-    replay
-endif
+overhead "We got to line 315"
