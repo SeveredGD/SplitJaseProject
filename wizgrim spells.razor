@@ -1,0 +1,384 @@
+//wizard grim spells
+while not dead myKillTarget and find myKillTarget -1 -1 12 as killy
+
+    for 5
+
+        if findbuff "bleed" or findbuff "disease"
+            if timer cleansingBrewTimer >= cdCleansingBrew and findtype 50675 backpack 2935 as jrew
+                dclick jrew
+                wait minimumWaitForPing 
+                settimer cleansingBrewTimer 0
+            endif
+        endif
+    
+        if dead myKillTarget
+            break
+        elseif insysmsg "Target cannot be seen." 
+            @setvar! lastCannotBeSeen myKillTarget
+            overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+            replay
+        elseif find myKillTarget -1 -1 12 as killy
+            // do nothing - in range to kill
+        else
+            break
+        endif         
+        
+               
+        if diffhits >= hpCheckToTriggerHealPotion 
+            script 'healing and buffing'
+        endif
+        
+        if diffhits >= hpCheckToTriggerGreaterHealSpell and mana >= 12
+            script 'healing and buffing'
+        endif
+        
+        if poisoned
+            script 'healing and buffing'
+        endif
+
+        if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+            overhead "Eating shrooms" 66
+            dclick mushy
+            @setvar! jase_shrooms mushy
+            wait 200
+            if insysmsg "You consume a magic mushroom and restore some mana."
+                settimer magicMushroomTimer 0    
+            elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                settimer magicMushroomTimer 30000
+            endif
+        endif
+        if "discord" in discordDesc
+            @setvar! isDiscorded 1
+        elseif timer meditiationTimer >= 11000 
+            useskill 'Discordance'
+            wft 500
+            if targetexists 
+                target myKillTarget
+                overhead "Discorded" 88 myKillTarget
+            endif
+            settimer meditiationTimer 5000
+        endif
+        
+        if index = 0
+                    
+            if castLightning = 1 and diffhits < 30 and mana >= 12 and timer lightningTimer >= cdLightning and timer meditiationTimer >= cdMeditationMini and mana >= manaReserve
+                while not targetexists harmful
+                    if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                        hotkey '> Interrupt'
+                        break
+                    else
+                        cast 'Lightning'
+                        wait 50
+                    endif 
+                endwhile
+                if targetexists harmful
+                    target myKillTarget
+                    settimer lightningTimer 0
+                    cooldown Lightning cdLightning
+                    wait 500
+                endif
+            endif
+        
+        elseif index = 1
+        
+            if castFireball = 1 and diffhits < 30 and mana >= 12 and timer fireballTimer >= cdFireball and timer meditiationTimer >= cdMeditationMini and mana >= manaReserve
+                while not targetexists harmful
+                    if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                        hotkey '> Interrupt'
+                        break
+                    else
+                        cast 'fireball'
+                        wait 50
+                    endif 
+                endwhile
+                if targetexists harmful
+                    target myKillTarget
+                    settimer fireballTimer 0
+                    cooldown Fireball cdFireball
+                    wait 500
+                endif
+            endif
+            
+        elseif index = 2
+            if castFireball = 1 and diffhits < 30 and mana >= 12 and timer fireballTimer >= cdFireball and timer meditiationTimer >= cdMeditationMini and mana >= manaReserve
+                while not targetexists harmful
+                    if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                        hotkey '> Interrupt'
+                        break
+                    else
+                        cast 'fireball'
+                        wait 50
+                    endif 
+                endwhile
+                if targetexists harmful
+                    target myKillTarget
+                    settimer fireballTimer 0
+                    cooldown Fireball cdFireball
+                    wait 500
+                endif
+            endif                
+            
+        elseif index = 3
+
+            if castHarm = 1 and diffhits < 30 and mana >= 9 and timer harmTimer >= cdHarm and timer meditiationTimer >= cdMeditationMini and mana >= manaReserve
+                while not targetexists harmful
+                    if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                        hotkey '> Interrupt'
+                        break
+                    else
+                        cast 'harm'
+                        wait 50
+                    endif 
+                endwhile
+                if targetexists harmful
+                    target myKillTarget
+                    settimer harmTimer 0
+                    cooldown Harm cdHarm
+                    wait 500
+                endif
+            endif
+        elseif index = 4
+        
+            if castMagicArrow = 1 and diffhits < 30 and mana >= 5 and timer magicArrowTimer >= cdMagicArrow and timer meditiationTimer >= cdMeditationMini and mana >= manaReserve
+                while not targetexists harmful
+                    if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                        hotkey '> Interrupt'
+                        break
+                    else
+                        cast 'magic arrow'
+                        wait 50
+                    endif 
+                endwhile
+                if targetexists harmful
+                    target myKillTarget
+                    settimer magicArrowTimer 0
+                    cooldown MagicArrow cdMagicArrow
+                    wait 500
+                endif
+            endif
+            
+        endif
+           
+    endfor
+   
+    if find myKillTarget -1 -1 12 as killy
+       // do nothing
+    else
+        overhead "Out of range" 34
+        break
+    endif
+    
+    
+    if diffhits >= hpCheckToTriggerGreaterHealSpell
+    //send to heal script        
+        
+    elseif mana < 55 and findbuff "actively meditating" 
+        // wait for mana
+    elseif timer meditiationTimer < cdMeditationMini and findbuff "actively meditating" 
+        // wait for mana
+    elseif castChainLightning = 1 and timer chainLightningTimer >= cdChainLightning
+        //do nothing
+    elseif castEbolt = 1 and mana >= 32 and mana >= manaReserve
+        //do nothing
+        if castMindBlast = 1 and mana >= 32 and mana >= manaReserve
+            while not targetexists harmful and mana > 30
+                if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+                    overhead "Eating shrooms" 66
+                    dclick mushy
+                    @setvar! jase_shrooms mushy
+                    wait 200
+                    if insysmsg "You consume a magic mushroom and restore some mana."
+                        settimer magicMushroomTimer 0    
+                    elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                        settimer magicMushroomTimer 30000
+                    endif
+                endif
+                if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                    hotkey '> Interrupt'
+                    break
+                else
+                    cast 'Mind Blast'
+                    wait 50
+                endif 
+            endwhile
+            if targetexists harmful
+                target myKillTarget
+                wait 500
+                if insysmsg "Target cannot be seen." 
+                    @setvar! lastCannotBeSeen myKillTarget
+                    overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+                    replay
+                endif
+            endif
+        endif
+        if castFlamestrike = 1 and mana > 42 and mana >= manaReserve
+            while not targetexists harmful and mana > 40
+            
+                if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+                    overhead "Eating shrooms" 66
+                    dclick mushy
+                    @setvar! jase_shrooms mushy
+                    wait 200
+                    if insysmsg "You consume a magic mushroom and restore some mana."
+                        settimer magicMushroomTimer 0
+                    elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                        settimer magicMushroomTimer 30000    
+                    endif
+                endif
+        
+                if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                    hotkey '> Interrupt'
+                    break
+                else
+                    cast 'Flamestrike'
+                    wait 50
+                endif 
+            endwhile
+            if targetexists harmful
+                target myKillTarget
+                wait 500
+                if insysmsg "Target cannot be seen." 
+                    @setvar! lastCannotBeSeen myKillTarget
+                    overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+                    replay
+                endif
+            endif
+        endif
+    elseif castMindBlast = 1 and mana >= 32 and mana >= manaReserve
+        while not targetexists harmful and mana > 30
+            if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+                overhead "Eating shrooms" 66
+                dclick mushy
+                @setvar! jase_shrooms mushy
+                wait 200
+                if insysmsg "You consume a magic mushroom and restore some mana."
+                    settimer magicMushroomTimer 0    
+                elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                    settimer magicMushroomTimer 30000
+                endif
+            endif
+            if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                hotkey '> Interrupt'
+                break
+            else
+                cast 'Mind Blast'
+                wait 50
+            endif 
+        endwhile
+        if targetexists harmful
+            target myKillTarget
+            wait 500
+            if insysmsg "Target cannot be seen." 
+                @setvar! lastCannotBeSeen myKillTarget
+                overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+                replay
+            endif
+        endif
+        if castFlamestrike = 1 and mana > 42 and mana >= manaReserve
+            while not targetexists harmful and mana > 40
+            
+                if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+                    overhead "Eating shrooms" 66
+                    dclick mushy
+                    @setvar! jase_shrooms mushy
+                    wait 200
+                    if insysmsg "You consume a magic mushroom and restore some mana."
+                        settimer magicMushroomTimer 0    
+                    elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                        settimer magicMushroomTimer 30000
+                    endif
+                endif
+        
+                if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                    hotkey '> Interrupt'
+                    break
+                else
+                    cast 'Flamestrike'
+                    wait 50
+                endif 
+            endwhile
+            if targetexists harmful
+                target myKillTarget
+                wait 500
+                if insysmsg "Target cannot be seen." 
+                    @setvar! lastCannotBeSeen myKillTarget
+                    overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+                    replay
+                endif
+            endif
+        endif
+    elseif castFlamestrike = 1 and mana > 42 and mana >= manaReserve
+        while not targetexists harmful and mana > 40
+        
+            if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+                overhead "Eating shrooms" 66
+                dclick mushy
+                @setvar! jase_shrooms mushy
+                wait 200
+                if insysmsg "You consume a magic mushroom and restore some mana."
+                    settimer magicMushroomTimer 0    
+                elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                    settimer magicMushroomTimer 30000
+                endif
+            endif
+    
+            if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                hotkey '> Interrupt'
+                break
+            else
+                cast 'Flamestrike'
+                wait 50
+            endif 
+        endwhile
+        if targetexists harmful
+            target myKillTarget
+            wait 500
+            if insysmsg "Target cannot be seen." 
+                @setvar! lastCannotBeSeen myKillTarget
+                overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+                replay
+            endif
+        endif
+    elseif not findbuff "actively meditating" and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+        overhead "Eating shrooms" 66
+        dclick mushy
+        @setvar! jase_shrooms mushy
+        wait 200
+        if insysmsg "You consume a magic mushroom and restore some mana."
+            settimer magicMushroomTimer 0    
+        elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+            settimer magicMushroomTimer 30000
+        endif
+        elseif not findbuff "actively meditating" and timer meditiationTimer >= cdMeditation and isDiscorded = 1 and isPeaced = 1
+        if followers > 0
+            //do nothing
+        endif
+        useskill 'meditation'
+        settimer meditiationTimer 0
+        wait 500
+    endif
+    wait 50
+endwhile
+wait 500
+if targetexists 
+    hotkey 'Cancel Current Target'
+endif
+if not findbuff "actively meditating" 
+    if automaticallySkinCorpses = 1 and findtype "corpse" ground -1 -1 2 as jorpse
+        if findtype "Elven Spellblade" backpack
+            while not targetexists neutral
+                useskill 'forensicevaluation'
+            endwhile
+            if targetexists neutral
+                hotkey "Target Self"
+                wait minimumWaitForPing
+                @ignore jorpse
+            endif
+        endif
+    endif
+    if followers > 0
+        //do nothing
+    endif
+endif
+@setvar! isDiscorded 0
+script 'targetting'

@@ -1,0 +1,239 @@
+# continue to fight the same target even after summons
+# target not seen - (warmode maybe?)
+@setvar! minimumWaitForPing 200
+
+# make sure you add a friends list called: IgnoreMobs
+@setvar! didYouSetupIgnoreMobs 0
+@setvar! overLand 0
+
+// 0 you choose (all kill)
+// 1 will target nearest
+// 2 will be find type
+// 3 will be target next (newest one 8/14/2023)
+@setvar! useTargetSystem 1
+
+# Do you want to use the new FindType code? Use 1 here
+# Do you want to use the Target Nearest / Next? Use 2 here
+# Else it will use the Target Closest Mon functionality 
+@setvar! useFindTypeToTargetMonster 2
+
+# after a kill you must have this amount of mana to continue to next target
+@setvar! minimumManaToCast 40 
+
+# Set this to one, if you want to cast poison once no matter what
+# If you have 100 poisoning and want Lethal, set this to 0
+@setvar! castPoisonAnyway 0
+
+# This will auto replay this script if you want it too
+@setvar! autoBotEnabled 0
+
+
+# Update this variable to 1 for ALL KILL
+# Update this variable to 0 for target nearest
+@setvar! setThisAsOneIfYouWantToTargetYourOwnKillOrItWillTargetClosestMonster 0
+
+################################
+###### Random abilities
+################
+@setvar! automaticallySkinCorpses 1
+@setvar! manaReserve 35
+@setvar! cdRetryBasedOnTargetNotSeen 2000
+
+###############
+###  Choose your summons
+######
+@setvar! breakSpellCastAndResummonIfLessThanXFollowers 0
+
+###############
+###  Choose your spells
+######
+@setvar! castCurse 1
+@setvar! castManadrain 1
+@setvar! castManaVampire 0
+@setvar! castLightning 1
+@setvar! castChainLightning 0
+@setvar! castFireball 1
+@setvar! castHarm 0
+@setvar! castMagicArrow 0
+# When other spells are on cooldown, do you want to cast Ebolt, MindBlast, Flamestrike or all three
+@setvar! castEbolt 0
+@setvar! castMindBlast 0
+@setvar! castFlamestrike 1
+
+
+################################
+###### Heal Controllers + Bandages
+################
+@setvar! hpCheckToTriggerGreaterHealSpell 25
+@setvar! hpCheckToTriggerMiniEmergencyHealSpell 60
+@setvar! hpCheckToTriggerHealPotion 45
+@setvar! bandageCheckTimerCd 5000
+        
+################################
+###### Potion Controllers
+################
+@setvar! automaticallyDrinkStrPotIfOverWeight 1
+# Drink Magic resist potion (only if magic shield buff not found)
+@setvar! automaticallyDrinkMagicPot 1
+@setvar! automaticallyDrinkHealPot 1
+@setvar! automaticallyDrinkCurePot 1
+#@setvar! automaticallyDrinkRefreshPot 0
+
+@setvar! hpCheckToTriggerCurePotion 45
+#@setvar! stamDiffCheckToTriggerRedPotion 10
+
+### Buffs - FORK BUFFS Tamer vs Necro
+if skill "Magery" >= 80 and "Taming" >= 80
+  @setvar! castBless 1
+  @setvar! castArchProtection 1
+  @setvar! castMagicShield 1
+  @setvar! castReactiveArmor 1
+  else
+  @setvar! castBless 0
+  @setvar! castArchProtection 0
+  @setvar! castMagicShield 1
+  @setvar! castReactiveArmor 1
+endif
+
+###############
+###  Choose your necro spells (ignored if less then required necro skill)
+######
+@setvar! castEvilOmen 1
+@setvar! castCorpseSkin 1
+@setvar! castVampiricEmbrace 1
+@setvar! castMindRot 1
+@setvar! castPoisonStrike 0
+@setvar! castBloodOath 0
+@setvar! castPainSpike 0
+@setvar! requireWitherBeforeSummons 0
+
+################################
+###### Chiv abilities
+################
+@setvar! useCleanseByFireAutomatically 1
+@setvar! useCloseWoundsAutomatically 1
+@setvar! useHolyLightAutomatically 1
+@setvar! useDivineFuryAutomatically 1
+@setvar! hpTriggerForHolyLight 35
+@setvar! lowHealthTriggerForNobleSacrifice 40
+
+################################
+###### Chiv cooldowns
+################
+@setvar! cdCleanseByFire 31000
+@setvar! cdCloseWounds 31000
+@setvar! cdHolyLight 31000
+@setvar! cdDivineFury 31000
+@setvar! cdNobleSacrifice 31000
+
+################################
+###### Chiv abilities overheads
+################
+@setvar! showChivUsageAsOverhead 1
+@setvar! showChivUsageAsSystemMessage 1
+@setvar! showChivUsageAsOverheadColor 88
+@setvar! showChivUsageAsSystemMessageColor 88
+
+###############
+### Edit these cooldowns to match your wizard grimoire
+######
+@setvar! canYouMakeAMushroom 1
+@setvar! cdLightning 20000
+@setvar! cdChainLightning 60000
+@setvar! cdMagicArrow 20000
+@setvar! cdHarm 20000
+@setvar! cdFireball 60000
+
+@setvar! cdAutoHealTamerPet 15000
+
+###############
+### Necro Cooldowns
+######
+@setvar! cdEvilOmen 30500
+@setvar! cdVampiricEmbrace 30500
+@setvar! cdCorpseSkin 30500
+@setvar! cdMindRot 30500
+@setvar! cdWither 30500
+@setvar! cdVengefulSpirit 30500
+@setvar! cdBloodOath 30500
+@setvar! cdPainSpike 30500
+@setvar! cdPoisonStrike 30500
+
+#### Buff Cooldowns
+@setvar! cdMushroom 61000
+@setvar! cdMagicShield 61000
+@setvar! cdReactiveArmor 61000
+@setvar! cdMeditation 10000
+@setvar! cdMeditationMini 3000
+@setvar! cdKillTarget 60000
+
+#### Random cooldowns
+@setvar! cdPreventOverheadSpam 3000
+@setvar! cdSkinningCheck 3000
+@setvar! cdCleansingBrew 125000
+
+#### Mushroom count (I like a lot of shroomies)
+@setvar! makeThisManyMushroomsCount 15
+@setvar! butOnlyIHaveLessThenThisCount 5
+
+#### This will send in pet for out of range targets
+@setvar! patrolPetEvenIfLastTargetIsBeyondEightTiles 1
+
+###########
+# If shit is not working right, adjust this number to ping
+#####
+@setvar! minimumWaitForPing 200
+@setvar! minimumWaitForPingUnequipping 650
+@setvar! cdPreventChivAbilitySpam 750
+@setvar! cdSkinningCheck 3000
+@setvar! cdPreventOverheadSpam 2000
+
+settimer bandageCheckTimer bandageCheckTimerCd
+settimer preventOverheadSpamTimer cdPreventOverheadSpam
+settimer preventChivAbilitySpamTimer cdPreventChivAbilitySpam
+settimer sCheck 12000
+
+@setvar! myRangeCheckForTarget 2
+@setvar! myPreviousKillTarget 0
+@setvar! jaseowns_OutputHerdingActiveOverheadHelper 0
+
+#####
+##  Skill Check Timer
+####
+@setvar! jaseowns_SkillTimerCD 11500
+settimer jaseowns_SkillTimerCheck jaseowns_SkillTimerCD
+
+#####
+##  System Message Check Timer
+####
+@setvar! jaseowns_SystemMsgCheckCD 1000
+settimer jaseowns_SystemMsgCheck jaseowns_SystemMsgCheckCD
+
+#####
+##  Kill Target Check Timer
+####
+@setvar! jaseowns_KillTimerCD 1000
+settimer jaseowns_KillTimer jaseowns_KillTimerCD
+
+#####
+##  Herd Again Check Timer
+####
+@setvar! jaseowns_HerdAgainTimerCD 8000
+settimer jaseowns_HerdAgainTimer jaseowns_HerdAgainTimerCD
+
+#####
+##  Targeting Variables
+####
+@setvar! jaseowns_CurrentTargetFocus 0
+@setvar! jaseowns_LastFocusAggressionTarget 0
+@setvar! jaseowns_KillTarget 0
+
+#### SET CLASS
+if skill "Magery" >= 80 and "Necromancy" >= 80
+  @setvar! NecromancerClass 1
+  elseif skill "Magery" >= 80 and "Taming" >= 80
+  @setvar! TamerMageClass 1
+  elseif skill "Tactics" >= 80 and "Taming" >= 80
+  setvar! DexxerTamerClass 1
+endif
+
