@@ -212,6 +212,7 @@ elseif find myKillTarget -1 -1 12 as killy
                     wait 50
                 elseif diffhits >= hpCheckToTriggerGreaterHealSpell or dead myKillTarget
                     hotkey '> Interrupt'
+                    script "HealingAndBuffing"
                     break
                 endif
             endwhile
@@ -243,6 +244,7 @@ elseif find myKillTarget -1 -1 12 as killy
                     wait 50
                 elseif diffhits >= hpCheckToTriggerGreaterHealSpell
                     hotkey '> Interrupt'
+                    script "HealingAndBuffing"
                     break
                 endif
             endwhile
@@ -263,20 +265,6 @@ elseif find myKillTarget -1 -1 12 as killy
                 hotkey "Cancel current target"
             endif
         endif
-            if isDiscorded = 0
-                getlabel myKillTarget discordDesc
-                if "discord" in discordDesc
-                    @setvar! isDiscorded 1
-                elseif timer meditiationTimer >= 11000 
-                    useskill 'Discordance'
-                    wft 500
-                    if targetexists 
-                        target myKillTarget
-                        //overhead "Discorded" 88 myKillTarget
-                    endif
-                    settimer meditiationTimer 5000
-                endif
-            endif
         @setvar myPreviousKillTarget myKillTarget
     endif
     script 'WizardSpells'
