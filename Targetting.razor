@@ -1,37 +1,4 @@
 //targetting
-# continue to fight the same target even after summons
-# target not seen - (warmode maybe?)
-@setvar! minimumWaitForPing 200
-
-# make sure you add a friends list called: IgnoreMobs
-@setvar! didYouSetupIgnoreMobs 0
-@setvar! overLand 0
-
-// 0 you choose (all kill)
-// 1 will target nearest
-// 2 will be find type
-// 3 will be target next (newest one 8/14/2023)
-@setvar! useTargetSystem 1
-
-# Do you want to use the new FindType code? Use 1 here
-# Do you want to use the Target Nearest / Next? Use 2 here
-# Else it will use the Target Closest Mon functionality 
-@setvar! useFindTypeToTargetMonster 2
-
-# after a kill you must have this amount of mana to continue to next target
-@setvar! minimumManaToCast 40 
-
-# Set this to one, if you want to cast poison once no matter what
-# If you have 100 poisoning and want Lethal, set this to 0
-@setvar! castPoisonAnyway 0
-
-# This will auto replay this script if you want it too
-@setvar! autoBotEnabled 0
-
-
-# Update this variable to 1 for ALL KILL
-# Update this variable to 0 for target nearest
-@setvar! setThisAsOneIfYouWantToTargetYourOwnKillOrItWillTargetClosestMonster 0
 
 #### This will send in pet for out of range targets
 @setvar! patrolPetEvenIfLastTargetIsBeyondEightTiles 1
