@@ -1,3 +1,8 @@
+#food
+if not findbuff "food" and findtype "tray" backpack as jood
+    dclick jood
+    wait 200
+endif
 # Herding
 @setvar! isHerdingActive 0
 if findtype 3713 self as firstJrook
