@@ -1,8 +1,8 @@
 //overhead "Turned on WizardSpells"
 ### Autobot retarget?
-#if dead myKillTarget and autoBotEnabled = 1
-#script 'Targetting'
-#endif
+if dead myKillTarget and autoBotEnabled = 1
+script 'Targetting'
+endif
 ###
 if diffhits >= hpCheckToTriggerGreaterHealSpell and mana > 12
     script 'HealingAndBuffing'
