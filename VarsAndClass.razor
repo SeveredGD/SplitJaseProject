@@ -91,7 +91,7 @@ overhead "Turned on VarsAndClass"
 #@setvar! stamDiffCheckToTriggerRedPotion 10
 
 ### Buffs - FORK BUFFS Tamer vs Necro
-if skill "Magery" >= 80 and "Taming" >= 80
+if skill "Taming" >= 80
   @setvar! castBless 1
   @setvar! castArchProtection 1
   @setvar! castMagicShield 1
@@ -406,5 +406,7 @@ if skill "Magery" >= 80 and "Necromancy" >= 80
   @setvar! DexxerTamerClass 1
 endif
 
-###send off to targetting
-script 'Targetting'
+###send off to targetting?
+//script 'Targetting'
+### send to healbuff first
+script 'HealingAndBuffing'

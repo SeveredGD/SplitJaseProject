@@ -47,24 +47,8 @@ if diffhits >= hpCheckToTriggerHealPotion
 endif
 #################################
 ###Gating heals and magery buffs behind skill
-    if skill "Magery" >= 50
+if skill "Magery" >= 50
     //heal
-    while not targetexists beneficial
-        if diffhits >= hpCheckToTriggerMiniEmergencyHealSpell
-            cast 'Heal'
-        else
-            cast 'Greater Heal'                
-        endif
-        wait 50
-        if hp = maxhp
-            hotkey '> Interrupt'
-            break
-        endif
-    endwhile
-    if targetexists beneficial
-        hotkey "Target Self"
-        wait 50
-    endif
     
     if diffhits >= hpCheckToTriggerGreaterHealSpell and mana > 12
         while not targetexists beneficial
@@ -87,8 +71,8 @@ endif
     //buffs
     if castArchProtection = 1 and not findbuff "Protection"
         while not targetexists
-            cast 'Protection'
-            wait 50
+        cast 'Arch Protection'
+    wait 350
             if diffhits >= hpCheckToTriggerGreaterHealSpell
                 hotkey '> Interrupt'
                 break
@@ -147,5 +131,9 @@ endif
 #If DexxerTamerClass = 1
 // ???
 #endif
-
-script 'WizardSpells'  
+###
+if find myKillTarget -1 -1 12 as killy
+    script 'WizardSpells'
+else
+    script 'Targetting'
+endif
