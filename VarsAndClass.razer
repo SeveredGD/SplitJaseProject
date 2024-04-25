@@ -244,4 +244,4 @@ if skill "Magery" >= 80 and "Necromancy" >= 80
 endif
 
 ###send off to targetting
-script 'targetting'
+script 'Targetting'
