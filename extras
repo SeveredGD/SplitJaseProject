@@ -1,0 +1,22 @@
+    if paralyzed 
+        if findtype "pouch" backpack 38 
+            yell "[pouch"
+            wait minimumWaitForPing
+        else
+            overhead "Out of Pouches!" 34
+        endif
+    endif
+
+    if findbuff "weaken" and weight > maxweight 
+        if findtype "gold coin" backpack as item
+            lift item 2000
+            droprelloc 0 0
+            wait minimumWaitForPing
+            if insysmsg "cannot drop anything"
+                drop backpack -1 -1 -1
+            endif
+            wait minimumWaitForPingUnequipping
+        else
+            overhead "We are overweight and cannot drop anything" 34
+        endif
+    endif
