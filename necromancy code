@@ -1,0 +1,327 @@
+if gumpexists 622436516 and skill "Necromancy" >= 50
+            if ingump "12/" 622436516
+                @setvar! necroSymbols 12
+            elseif ingump "13/" 622436516
+                @setvar! necroSymbols 13
+            elseif ingump "14/" 622436516
+                @setvar! necroSymbols 14
+            elseif ingump "15/" 622436516
+                @setvar! necroSymbols 15
+            elseif ingump "16/" 622436516
+                @setvar! necroSymbols 16
+            elseif ingump "17/" 622436516
+                @setvar! necroSymbols 17
+            elseif ingump "18/" 622436516
+                @setvar! necroSymbols 18
+            elseif ingump "19/" 622436516
+                @setvar! necroSymbols 19
+            elseif ingump "20/" 622436516
+                @setvar! necroSymbols 20
+            elseif ingump "21/" 622436516
+                @setvar! necroSymbols 21
+            elseif ingump "11/" 622436516
+                @setvar! necroSymbols 11
+            elseif ingump "10/" 622436516
+                @setvar! necroSymbols 10
+            elseif ingump "9/" 622436516
+                @setvar! necroSymbols 9
+            elseif ingump "8/" 622436516
+                @setvar! necroSymbols 8
+            elseif ingump "7/" 622436516
+                @setvar! necroSymbols 7
+            elseif ingump "6/" 622436516
+                @setvar! necroSymbols 6
+            elseif ingump "5/" 622436516
+                @setvar! necroSymbols 5
+            elseif ingump "4/" 622436516
+                @setvar! necroSymbols 4
+            elseif ingump "3/" 622436516
+                @setvar! necroSymbols 3
+            elseif ingump "2/" 622436516
+                @setvar! necroSymbols 2
+            elseif ingump "1/" 622436516
+                @setvar! necroSymbols 1
+            elseif ingump "0/" 622436516
+                @setvar! necroSymbols 0
+            endif
+endif
+if castCorpseSkin = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer corpseSkinTimer >= cdCorpseSkin and skill "Necromancy" >= 65 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and 2 < necroSymbols and mana >= manaReserve
+yell "[CorpseSkin"
+settimer preventSpamNecroAbilitiesTimer 0
+settimer corpseSkinTimer 0
+cooldown CorpseSkin cdCorpseSkin
+wait 500
+            if gumpexists 622436516
+                if ingump "12/" 622436516
+                    @setvar! necroSymbols 12
+                elseif ingump "13/" 622436516
+                    @setvar! necroSymbols 13
+                elseif ingump "14/" 622436516
+                    @setvar! necroSymbols 14
+                elseif ingump "15/" 622436516
+                    @setvar! necroSymbols 15
+                elseif ingump "16/" 622436516
+                    @setvar! necroSymbols 16
+                elseif ingump "17/" 622436516
+                    @setvar! necroSymbols 17
+                elseif ingump "18/" 622436516
+                    @setvar! necroSymbols 18
+                elseif ingump "19/" 622436516
+                    @setvar! necroSymbols 19
+                elseif ingump "20/" 622436516
+                    @setvar! necroSymbols 20
+                elseif ingump "21/" 622436516
+                    @setvar! necroSymbols 21
+                elseif ingump "11/" 622436516
+                    @setvar! necroSymbols 11
+                elseif ingump "10/" 622436516
+                    @setvar! necroSymbols 10
+                elseif ingump "9/" 622436516
+                    @setvar! necroSymbols 9
+                elseif ingump "8/" 622436516
+                    @setvar! necroSymbols 8
+                elseif ingump "7/" 622436516
+                    @setvar! necroSymbols 7
+                elseif ingump "6/" 622436516
+                    @setvar! necroSymbols 6
+                elseif ingump "5/" 622436516
+                    @setvar! necroSymbols 5
+                elseif ingump "4/" 622436516
+                    @setvar! necroSymbols 4
+                elseif ingump "3/" 622436516
+                    @setvar! necroSymbols 3
+                elseif ingump "2/" 622436516
+                    @setvar! necroSymbols 2
+                elseif ingump "1/" 622436516
+                    @setvar! necroSymbols 1
+                elseif ingump "0/" 622436516
+                    @setvar! necroSymbols 0
+                endif
+            endif
+endif
+
+if castBloodOath = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and skill "Necromancy" >= 80 and timer bloodOathTimer >= cdBloodOath and 5 < necroSymbols and mana >= manaReserve
+yell "[BloodOath"
+settimer preventSpamNecroAbilitiesTimer 0
+settimer bloodOathTimer 0
+if gumpexists 622436516
+    if ingump "12/" 622436516
+        @setvar! necroSymbols 12
+    elseif ingump "13/" 622436516
+        @setvar! necroSymbols 13
+    elseif ingump "14/" 622436516
+        @setvar! necroSymbols 14
+    elseif ingump "15/" 622436516
+        @setvar! necroSymbols 15
+    elseif ingump "16/" 622436516
+        @setvar! necroSymbols 16
+    elseif ingump "17/" 622436516
+        @setvar! necroSymbols 17
+    elseif ingump "18/" 622436516
+        @setvar! necroSymbols 18
+    elseif ingump "19/" 622436516
+        @setvar! necroSymbols 19
+    elseif ingump "20/" 622436516
+        @setvar! necroSymbols 20
+    elseif ingump "21/" 622436516
+        @setvar! necroSymbols 21
+    elseif ingump "11/" 622436516
+        @setvar! necroSymbols 11
+    elseif ingump "10/" 622436516
+        @setvar! necroSymbols 10
+    elseif ingump "9/" 622436516
+        @setvar! necroSymbols 9
+    elseif ingump "8/" 622436516
+        @setvar! necroSymbols 8
+    elseif ingump "7/" 622436516
+        @setvar! necroSymbols 7
+    elseif ingump "6/" 622436516
+        @setvar! necroSymbols 6
+    elseif ingump "5/" 622436516
+        @setvar! necroSymbols 5
+    elseif ingump "4/" 622436516
+        @setvar! necroSymbols 4
+    elseif ingump "3/" 622436516
+        @setvar! necroSymbols 3
+    elseif ingump "2/" 622436516
+        @setvar! necroSymbols 2
+    elseif ingump "1/" 622436516
+        @setvar! necroSymbols 1
+    elseif ingump "0/" 622436516
+        @setvar! necroSymbols 0
+    endif
+endif
+endif
+
+if castEvilOmen = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer evilOmenTimer >= cdEvilOmen and skill "Necromancy" >= 60 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and 2 < necroSymbols and mana >= manaReserve
+yell "[EvilOmen"
+settimer evilOmenTimer 0
+settimer preventSpamNecroAbilitiesTimer 0
+cooldown EvilOmen cdEvilOmen
+wait 500
+if gumpexists 622436516
+    if ingump "12/" 622436516
+        @setvar! necroSymbols 12
+    elseif ingump "13/" 622436516
+        @setvar! necroSymbols 13
+    elseif ingump "14/" 622436516
+        @setvar! necroSymbols 14
+    elseif ingump "15/" 622436516
+        @setvar! necroSymbols 15
+    elseif ingump "16/" 622436516
+        @setvar! necroSymbols 16
+    elseif ingump "17/" 622436516
+        @setvar! necroSymbols 17
+    elseif ingump "18/" 622436516
+        @setvar! necroSymbols 18
+    elseif ingump "19/" 622436516
+        @setvar! necroSymbols 19
+    elseif ingump "20/" 622436516
+        @setvar! necroSymbols 20
+    elseif ingump "21/" 622436516
+        @setvar! necroSymbols 21
+    elseif ingump "11/" 622436516
+        @setvar! necroSymbols 11
+    elseif ingump "10/" 622436516
+        @setvar! necroSymbols 10
+    elseif ingump "9/" 622436516
+        @setvar! necroSymbols 9
+    elseif ingump "8/" 622436516
+        @setvar! necroSymbols 8
+    elseif ingump "7/" 622436516
+        @setvar! necroSymbols 7
+    elseif ingump "6/" 622436516
+        @setvar! necroSymbols 6
+    elseif ingump "5/" 622436516
+        @setvar! necroSymbols 5
+    elseif ingump "4/" 622436516
+        @setvar! necroSymbols 4
+    elseif ingump "3/" 622436516
+        @setvar! necroSymbols 3
+    elseif ingump "2/" 622436516
+        @setvar! necroSymbols 2
+    elseif ingump "1/" 622436516
+        @setvar! necroSymbols 1
+    elseif ingump "0/" 622436516
+        @setvar! necroSymbols 0
+    endif
+endif
+endif
+
+if castVampiricEmbrace = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer vampiricEmbraceTimer >= cdVampiricEmbrace and skill "Necromancy" >= 75 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and 3 < necroSymbols and findtype 8198 ground -1 -1 4 as jorpse
+yell "[VampiricEmbrace"
+wft 500
+target jorpse
+settimer preventSpamNecroAbilitiesTimer 0
+settimer vampiricEmbraceTimer 0
+cooldown VampiricEmbrace cdVampiricEmbrace
+wait 500
+if gumpexists 622436516
+    if ingump "12/" 622436516
+        @setvar! necroSymbols 12
+    elseif ingump "13/" 622436516
+        @setvar! necroSymbols 13
+    elseif ingump "14/" 622436516
+        @setvar! necroSymbols 14
+    elseif ingump "15/" 622436516
+        @setvar! necroSymbols 15
+    elseif ingump "16/" 622436516
+        @setvar! necroSymbols 16
+    elseif ingump "17/" 622436516
+        @setvar! necroSymbols 17
+    elseif ingump "18/" 622436516
+        @setvar! necroSymbols 18
+    elseif ingump "19/" 622436516
+        @setvar! necroSymbols 19
+    elseif ingump "20/" 622436516
+        @setvar! necroSymbols 20
+    elseif ingump "21/" 622436516
+        @setvar! necroSymbols 21
+    elseif ingump "11/" 622436516
+        @setvar! necroSymbols 11
+    elseif ingump "10/" 622436516
+        @setvar! necroSymbols 10
+    elseif ingump "9/" 622436516
+        @setvar! necroSymbols 9
+    elseif ingump "8/" 622436516
+        @setvar! necroSymbols 8
+    elseif ingump "7/" 622436516
+        @setvar! necroSymbols 7
+    elseif ingump "6/" 622436516
+        @setvar! necroSymbols 6
+    elseif ingump "5/" 622436516
+        @setvar! necroSymbols 5
+    elseif ingump "4/" 622436516
+        @setvar! necroSymbols 4
+    elseif ingump "3/" 622436516
+        @setvar! necroSymbols 3
+    elseif ingump "2/" 622436516
+        @setvar! necroSymbols 2
+    elseif ingump "1/" 622436516
+        @setvar! necroSymbols 1
+    elseif ingump "0/" 622436516
+        @setvar! necroSymbols 0
+    endif
+endif
+endif
+
+if castPainSpike = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer painSpikeTimer >= cdPainSpike and skill "Necromancy" >= 95 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and 5 < necroSymbols and findtype 8198 ground -1 -1 6 as jorpse
+yell "[PainSpike"
+wft 500
+target myKillTarget
+wait 200
+settimer preventSpamNecroAbilitiesTimer 0
+if insysmsg "You do not see any corpses"
+    // do nothing
+else
+    settimer painSpikeTimer 0
+    cooldown PainSpike cdPainSpike            
+endif
+if gumpexists 622436516
+    if ingump "12/" 622436516
+        @setvar! necroSymbols 12
+    elseif ingump "13/" 622436516
+        @setvar! necroSymbols 13
+    elseif ingump "14/" 622436516
+        @setvar! necroSymbols 14
+    elseif ingump "15/" 622436516
+        @setvar! necroSymbols 15
+    elseif ingump "16/" 622436516
+        @setvar! necroSymbols 16
+    elseif ingump "17/" 622436516
+        @setvar! necroSymbols 17
+    elseif ingump "18/" 622436516
+        @setvar! necroSymbols 18
+    elseif ingump "19/" 622436516
+        @setvar! necroSymbols 19
+    elseif ingump "20/" 622436516
+        @setvar! necroSymbols 20
+    elseif ingump "21/" 622436516
+        @setvar! necroSymbols 21
+    elseif ingump "11/" 622436516
+        @setvar! necroSymbols 11
+    elseif ingump "10/" 622436516
+        @setvar! necroSymbols 10
+    elseif ingump "9/" 622436516
+        @setvar! necroSymbols 9
+    elseif ingump "8/" 622436516
+        @setvar! necroSymbols 8
+    elseif ingump "7/" 622436516
+        @setvar! necroSymbols 7
+    elseif ingump "6/" 622436516
+        @setvar! necroSymbols 6
+    elseif ingump "5/" 622436516
+        @setvar! necroSymbols 5
+    elseif ingump "4/" 622436516
+        @setvar! necroSymbols 4
+    elseif ingump "3/" 622436516
+        @setvar! necroSymbols 3
+    elseif ingump "2/" 622436516
+        @setvar! necroSymbols 2
+    elseif ingump "1/" 622436516
+        @setvar! necroSymbols 1
+    elseif ingump "0/" 622436516
+        @setvar! necroSymbols 0
+    endif
+endif
+endif
