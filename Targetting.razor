@@ -153,15 +153,14 @@ elseif find myKillTarget -1 -1 12 as killy
     if myKillTarget = myPreviousKillTarget
         // do nothing
     else        
-        // Herding using crook
-        overhead "We got to line 157"
+        overhead "We got to line 156"
         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
          ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
          ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
-        #if DexxerTamerClass 1
-        #   script "BandageChivAndVet"
-        #overhead Moving to BandageScript
-        #endif
+        if DexxerTamerClass = 1
+        overhead "Moving to BandageScript"
+           script "BandageChivAndVet"
+        endif
         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
         overhead "We got to line 166"
         if inlist myManaVampireTargets myKillTarget
