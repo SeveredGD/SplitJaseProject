@@ -71,6 +71,7 @@ if castCorpseSkin = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamN
 yell "[CorpseSkin"
 settimer preventSpamNecroAbilitiesTimer 0
 settimer corpseSkinTimer 0
+wait 250
 cooldown CorpseSkin cdCorpseSkin
             if gumpexists 622436516
                 if ingump "12/" 622436516
@@ -125,6 +126,7 @@ if castBloodOath = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNe
 yell "[BloodOath"
 settimer preventSpamNecroAbilitiesTimer 0
 settimer bloodOathTimer 0
+wait 250
 if gumpexists 622436516
     if ingump "12/" 622436516
         @setvar! necroSymbols 12
@@ -179,6 +181,7 @@ yell "[EvilOmen"
 settimer evilOmenTimer 0
 settimer preventSpamNecroAbilitiesTimer 0
 cooldown EvilOmen cdEvilOmen
+wait 250
 if gumpexists 622436516
     if ingump "12/" 622436516
         @setvar! necroSymbols 12
