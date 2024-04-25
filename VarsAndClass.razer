@@ -234,14 +234,6 @@ settimer jaseowns_HerdAgainTimer jaseowns_HerdAgainTimerCD
 @setvar! jaseowns_LastFocusAggressionTarget 0
 @setvar! jaseowns_KillTarget 0
 
-#### SET CLASS
-if skill "Magery" >= 80 and "Necromancy" >= 80
-  @setvar! NecromancerClass 1
-  elseif skill "Magery" >= 80 and "Taming" >= 80
-  @setvar! TamerMageClass 1
-  elseif skill "Tactics" >= 80 and "Taming" >= 80
-  @setvar! DexxerTamerClass 1
-endif
 @setvar! jaseDebugMode 0
 
 ##################################################################
@@ -405,3 +397,12 @@ endif
 
 ###send off to targetting
 script 'Targetting'
+
+#### SET CLASS
+if skill "Magery" >= 80 and "Necromancy" >= 80
+  @setvar! NecromancerClass 1
+  elseif skill "Magery" >= 80 and "Taming" >= 80
+  @setvar! TamerMageClass 1
+  elseif skill "Tactics" >= 80 and "Taming" >= 80
+  @setvar! DexxerTamerClass 1
+endif
