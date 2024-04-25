@@ -1,4 +1,11 @@
-if inlist myManaVampireTargets myKillTarget and inlist myManaDrainTargets myKillTarget
+overhead "Turned on WizardSpells"
+
+if diffhits >= hpCheckToTriggerGreaterHealSpell and mana > 12
+    script "HealingAndBuffing"
+elseif inlist myManaVampireTargets myKillTarget 
+    //do nothing
+elseif inlist myManaDrainTargets myKillTarget
+    //do nothing
 
 //wizard grim spells
 while not dead myKillTarget and find myKillTarget -1 -1 12 as killy
