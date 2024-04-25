@@ -395,9 +395,6 @@ elseif followers = 5
     @setvar! followCount 5
 endif
 
-###send off to targetting
-script 'Targetting'
-
 #### SET CLASS
 if skill "Magery" >= 80 and "Necromancy" >= 80
   @setvar! NecromancerClass 1
@@ -406,3 +403,8 @@ if skill "Magery" >= 80 and "Necromancy" >= 80
   elseif skill "Tactics" >= 80 and "Taming" >= 80
   @setvar! DexxerTamerClass 1
 endif
+
+###send off to targetting
+script 'Targetting'
+
+
