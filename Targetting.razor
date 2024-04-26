@@ -153,7 +153,7 @@ if lastCannotBeSeen = myKillTarget
 elseif find myKillTarget -1 -1 12 as killy
     if myKillTarget = myPreviousKillTarget
         // do nothing
-    else      
+    else
         
         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
         if DexxerTamerClass = 1
@@ -162,7 +162,28 @@ elseif find myKillTarget -1 -1 12 as killy
         endif
         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
         ### If cursed and drained send back to spells
-
+        while mana <= manaReserve
+            if not findbuff "actively meditating" and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+        
+                        overhead "Eating shrooms" 66
+                        dclick mushy
+                        @setvar! jase_shrooms mushy
+                        wait 200
+                        if insysmsg "You consume a magic mushroom and restore some mana."
+                            settimer magicMushroomTimer 0    
+                        elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                            settimer magicMushroomTimer 30000
+                        endif
+                    elseif not findbuff "actively meditating" and timer meditiationTimer >= cdMeditation
+                        if followers > 0
+                            //do nothing
+                        endif
+                    useskill 'meditation'
+                    settimer meditiationTimer 0
+                    wait 500
+        
+            endif
+        endwhile
         if inlist myManaVampireTargets myKillTarget
             overhead "We already mana vampired this guy" 88
             // do nothing
