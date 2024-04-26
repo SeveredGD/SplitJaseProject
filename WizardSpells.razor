@@ -1,13 +1,5 @@
 //overhead "Turned on WizardSpells"
 
-### Autobot retarget? no worky
-
-if dead myKillTarget and autoBotEnabled = 1
-overhead 'autobot retarget'
-script 'Targetting'
-endif
-###
-
 if diffhits >= hpCheckToTriggerGreaterHealSpell and mana > 12
     script 'HealingAndBuffing'
 elseif inlist myManaVampireTargets myKillTarget 
@@ -679,6 +671,5 @@ wait 500
         endif
     endif
 else
-@setvar! isDiscorded 0
 script 'Targetting'
 endif
