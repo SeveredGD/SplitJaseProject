@@ -28,10 +28,6 @@
 # after a kill you must have this amount of mana to continue to next target
 @setvar! minimumManaToCast 40 
 
-# Set this to one, if you want to cast poison once no matter what
-# If you have 100 poisoning and want Lethal, set this to 0
-@setvar! castPoisonAnyway 0
-
 # This will auto replay this script if you want it too
 @setvar! autoBotEnabled 0
 
@@ -47,9 +43,6 @@
 @setvar! manaReserve 35
 @setvar! cdRetryBasedOnTargetNotSeen 2000
 
-###############
-###  Choose your summons
-######
 @setvar! breakSpellCastAndResummonIfLessThanXFollowers 0
 
 ###############
@@ -243,20 +236,6 @@ settimer jaseowns_HerdAgainTimer jaseowns_HerdAgainTimerCD
 #   Hopefully you do not have to edit after this :)
 #
 ##################################################################
-
-if didYouSetupIgnoreMobs = 0 and useFindTypeToTargetMonster = 0
-    overhead "For this script to work, make sure you add a friends list called: IgnoreMobs" 34
-    sysmsg  "For this script to work, make sure you add a friends list called: IgnoreMobs" 34
-    wait 1500
-    overhead "Click Friends Tab -> [checkmark] enabled -> [checkmark] Next/Prev Target ignores 'IgnoreMobs'" 88
-    sysmsg "Click Friends Tab -> [checkmark] enabled -> [checkmark] Next/Prev Target ignores 'IgnoreMobs'" 88
-    wait 5000
-    overhead "If everything is setup, update didYouSetupIgnoreMobs to 1"
-    sysmsg "If everything is setup, update didYouSetupIgnoreMobs to 1"
-    wait 5000
-    replay
-endif
-
 
 @setvar! tamerModeEngaged 0
 
