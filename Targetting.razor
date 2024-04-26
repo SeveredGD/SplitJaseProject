@@ -50,7 +50,7 @@ elseif useTargetSystem = 1
             replay
         endif
         stop
-    elseif not find lasttarget ground -1 -1 10
+        elseif not find lasttarget ground -1 -1 12
     
         @setvar checkForSummons lasttarget 
         getlabel checkForSummons checkForSummonsDesc
@@ -69,7 +69,7 @@ elseif useTargetSystem = 1
     
         overhead "● ▼ OUT OF RANGE ▼ ●" 88 lasttarget
         if timer preventOverheadSpamTimer >= cdPreventOverheadSpam
-            overhead "Move closer, more then 8 tiles away" 34
+            overhead "Move closer, more then 10 tiles away" 34
             settimer preventOverheadSpamTimer 0
         endif
         if autoBotEnabled = 1
@@ -151,17 +151,6 @@ if lastCannotBeSeen = myKillTarget
     replay
     endif
 elseif find myKillTarget -1 -1 12 as killy
-    if myKillTarget = myPreviousKillTarget
-        // do nothing
-    else
-        
-        ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
-        if DexxerTamerClass = 1
-        overhead "Moving to BandageScript"
-           script "BandageChivAndVet"
-        endif
-        ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
-        ### If cursed and drained send back to spells
         while mana <= manaReserve
             if not findbuff "actively meditating" and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
         
@@ -184,6 +173,18 @@ elseif find myKillTarget -1 -1 12 as killy
         
             endif
         endwhile
+    if myKillTarget = myPreviousKillTarget
+// do nothing
+    else
+        
+        ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
+        if DexxerTamerClass = 1
+        overhead "Moving to BandageScript"
+           script "BandageChivAndVet"
+        endif
+        ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
+        ### If cursed and drained send back to spells
+
         if inlist myManaVampireTargets myKillTarget
             overhead "We already mana vampired this guy" 88
             // do nothing
@@ -289,8 +290,9 @@ elseif find myKillTarget -1 -1 12 as killy
         endif
         @setvar myPreviousKillTarget myKillTarget
     endif
-    script 'WizardSpells'
     overhead "Sending to Wizard spells"
+    script 'WizardSpells'
+
 else
     overhead "Out of range" 34
 endif
@@ -317,4 +319,9 @@ if timer killTargetTimer >= cdKillTarget
     removelist myCursedTargets      
     removelist myManaDrainTargets
     removelist myManaVampireTargets
+endif
+
+if autoBotEnabled = 1
+    wait 500
+    replay
 endif
