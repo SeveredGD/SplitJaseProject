@@ -27,7 +27,7 @@ if targetexists harmful
     hotkey "Cancel current target"
 endif
 
-if useTargetSystem = 0 and followCount >= 1
+if useTargetSystem = 0
     //say "all kill"
     wait 200
     while targetexists 
@@ -54,11 +54,7 @@ elseif useTargetSystem = 1
     
         @setvar checkForSummons lasttarget 
         getlabel checkForSummons checkForSummonsDesc
-        if "discord" in checkForSummonsDesc
-        @setvar! isDiscorded 1
-        else
-        @setvar! isDiscorded 0
-        endif
+            overhead 'Is this the loop? #1'
 
     
         if "(summoned" in checkForSummonsDesc or "(bonded" in checkForSummonsDesc in checkForSummonsDesc
@@ -137,11 +133,6 @@ endif
 
 if not varexist lastCannotBeSeenLoopIndex
     @setvar! lastCannotBeSeenLoopIndex 0
-endif
-if find myKillTarget -1 -1 12 as killy and followers >= 1
-    say 'All kill'
-    wft 250
-    target myKillTarget
 endif
 if lastCannotBeSeen = myKillTarget
     if timer preventOverheadSpamTimer >= cdPreventOverheadSpam
