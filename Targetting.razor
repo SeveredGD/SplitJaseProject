@@ -163,10 +163,9 @@ elseif find myKillTarget -1 -1 12 as killy
         ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
         ### If cursed and drained send back to spells
         while mana <= manaReserve
-        overhead 'Not enough mana to cast - running mush/med loop'
             if not findbuff "actively meditating" and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
         
-                        overhead "Eating shrooms" 66
+        overhead "Eating shrooms from target" 66
                         dclick mushy
                         @setvar! jase_shrooms mushy
                         wait 200
