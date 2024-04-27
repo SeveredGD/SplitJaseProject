@@ -7,10 +7,7 @@ elseif inlist myManaVampireTargets myKillTarget
 elseif inlist myManaDrainTargets myKillTarget
     //do nothing
 //will continue to wizard spells
-    if autoReplay = 1 and dead myKillTarget
-        overhead 'Autobotting'
-        script 'Targetting'
-    endif
+
 //wizard grim spells
     while not dead myKillTarget and find myKillTarget -1 -1 12 as killy
 //necromancy?
@@ -657,12 +654,12 @@ elseif inlist myManaDrainTargets myKillTarget
         endif
         wait 50
 if autoReplay = 1
-    overhead 'Autobotting'
+    //overhead 'Autobotting'
     script 'Targetting'
 endif
     endwhile
 if autoReplay = 1
-    overhead 'Autobotting'
+    //overhead 'Autobotting'
     script 'Targetting'
 endif
 wait 500
@@ -688,4 +685,4 @@ wait 500
     endif
 else
 script 'Targetting'
-endif
+endiff
