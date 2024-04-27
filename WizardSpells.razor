@@ -1,5 +1,7 @@
 //overhead "Turned on WizardSpells"
-
+if dead myKillTarget and autoBotEnabled = 1
+    script 'Targetting'
+endif
 if diffhits >= hpCheckToTriggerGreaterHealSpell and mana > 12
     script 'HealingAndBuffing'
 elseif inlist myManaVampireTargets myKillTarget 
@@ -9,64 +11,7 @@ elseif inlist myManaDrainTargets myKillTarget
 //will continue to wizard spells
 //wizard grim spells
     while not dead myKillTarget and find myKillTarget -1 -1 12 as killy
-        for 5
-
-            if findbuff "bleed" or findbuff "disease"
-                if timer cleansingBrewTimer >= cdCleansingBrew and findtype 50675 backpack 2935 as jrew
-                    dclick jrew
-                    wait minimumWaitForPing 
-                    settimer cleansingBrewTimer 0
-                endif
-            endif
-        
-            if dead myKillTarget
-                break
-            elseif insysmsg "Target cannot be seen." 
-                @setvar! lastCannotBeSeen myKillTarget
-                overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
-                replay
-            elseif find myKillTarget -1 -1 12 as killy
-                // do nothing - in range to kill
-            else
-                break
-            endif         
-            
-                   
-            if diffhits >= hpCheckToTriggerHealPotion 
-                script 'HealingAndBuffing'
-            endif
-            
-            if diffhits >= hpCheckToTriggerGreaterHealSpell and mana >= 12
-                script 'HealingAndBuffing'
-            endif
-            
-            if poisoned
-                script 'HealingAndBuffing'
-            endif
-
-            if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
-                overhead "Eating shrooms" 66
-                dclick mushy
-                @setvar! jase_shrooms mushy
-                wait 200
-                if insysmsg "You consume a magic mushroom and restore some mana."
-                    settimer magicMushroomTimer 0    
-                elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
-                    settimer magicMushroomTimer 30000
-                endif
-            endif
-            if "discord" in discordDesc
-                @setvar! isDiscorded 1
-            elseif timer meditiationTimer >= 11000 
-                useskill 'Discordance'
-                wft 500
-                if targetexists 
-                    target myKillTarget
-                    overhead "Discorded" 88 myKillTarget
-                endif
-                settimer meditiationTimer 5000
-            endif
-            //necromancy?
+//necromancy?
     if castCorpseSkin = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer corpseSkinTimer >= cdCorpseSkin and skill "Necromancy" >= 65 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and necroSymbols > 2 and mana >= manaReserve
     yell "[CorpseSkin"
     settimer preventSpamNecroAbilitiesTimer 0
@@ -348,7 +293,68 @@ elseif inlist myManaDrainTargets myKillTarget
         endif
     endif
     endif
+        for 5
+
+            if findbuff "bleed" or findbuff "disease"
+                if timer cleansingBrewTimer >= cdCleansingBrew and findtype 50675 backpack 2935 as jrew
+                    dclick jrew
+                    wait minimumWaitForPing 
+                    settimer cleansingBrewTimer 0
+                endif
+            endif
+        
+            if dead myKillTarget
+                break
+            elseif insysmsg "Target cannot be seen." 
+                @setvar! lastCannotBeSeen myKillTarget
+                overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+            if autoBotEnabled = 1
+                wait 500
+                script 'Targetting'
+            endif
+                replay
+            elseif find myKillTarget -1 -1 12 as killy
+                // do nothing - in range to kill
+            else
+                break
+            endif         
             
+                   
+            if diffhits >= hpCheckToTriggerHealPotion 
+                script 'HealingAndBuffing'
+            endif
+            
+            if diffhits >= hpCheckToTriggerGreaterHealSpell and mana >= 12
+                script 'HealingAndBuffing'
+            endif
+            
+            if poisoned
+                script 'HealingAndBuffing'
+            endif
+
+            if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+                overhead "Eating shrooms" 66
+                dclick mushy
+                @setvar! jase_shrooms mushy
+                wait 200
+                if insysmsg "You consume a magic mushroom and restore some mana."
+                    settimer magicMushroomTimer 0    
+                elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                    settimer magicMushroomTimer 30000
+                endif
+            endif
+            if "discord" in discordDesc
+                @setvar! isDiscorded 1
+            elseif timer meditiationTimer >= 11000 
+                useskill 'Discordance'
+                wft 500
+                if targetexists 
+                    target myKillTarget
+                    overhead "Discorded" 88 myKillTarget
+                endif
+                settimer meditiationTimer 5000
+            endif
+               
             if index = 0
                         
                 if castLightning = 1 and diffhits < 30 and mana >= 12 and timer lightningTimer >= cdLightning and timer meditiationTimer >= cdMeditationMini and mana >= manaReserve
@@ -672,4 +678,7 @@ wait 500
     endif
 else
 script 'Targetting'
+endif
+if dead myKillTarget and autoBotEnabled = 1
+    script 'Targetting'
 endif
