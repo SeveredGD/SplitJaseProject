@@ -150,8 +150,10 @@ if lastCannotBeSeen = myKillTarget
     replay
     endif
 elseif find myKillTarget -1 -1 12 as killy
-        if followers >= 1
-            say 'All Guard me'
+        if followers >= 1 and mana >= manaReserve
+            //do nothing
+        elseif followers >= 1 and mana <= manaReserve
+        say 'All guard me'
         endif
         while mana <= manaReserve
             if not findbuff "actively meditating" and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
