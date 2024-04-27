@@ -45,7 +45,7 @@ elseif useTargetSystem = 1
             @setvar! isDiscorded 1
             settimer preventOverheadSpamTimer 0
         endif
-        if autoBotEnabled = 1
+        if autoReplay = 1
             wait 500
             replay
         endif
@@ -54,7 +54,6 @@ elseif useTargetSystem = 1
     
         @setvar checkForSummons lasttarget 
         getlabel checkForSummons checkForSummonsDesc
-            overhead 'Is this the loop? #1'
 
     
         if "(summoned" in checkForSummonsDesc or "(bonded" in checkForSummonsDesc in checkForSummonsDesc
@@ -72,7 +71,7 @@ elseif useTargetSystem = 1
             overhead "Move closer, more then 10 tiles away" 34
             settimer preventOverheadSpamTimer 0
         endif
-        if autoBotEnabled = 1
+        if autoReplay = 1
             wait 500
             replay
         endif
@@ -151,6 +150,9 @@ if lastCannotBeSeen = myKillTarget
     replay
     endif
 elseif find myKillTarget -1 -1 12 as killy
+        if followers >= 1
+            say 'All Guard me'
+        endif
         while mana <= manaReserve
             if not findbuff "actively meditating" and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
         
@@ -290,7 +292,7 @@ elseif find myKillTarget -1 -1 12 as killy
         endif
         @setvar myPreviousKillTarget myKillTarget
     endif
-    overhead "Sending to Wizard spells"
+    //overhead "Sending to Wizard spells"
     script 'WizardSpells'
 
 else
@@ -321,7 +323,7 @@ if timer killTargetTimer >= cdKillTarget
     removelist myManaVampireTargets
 endif
 
-if autoBotEnabled = 1
+if autoReplay = 1
     wait 500
     replay
 endif
