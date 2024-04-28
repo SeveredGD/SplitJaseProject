@@ -299,6 +299,10 @@ elseif find myKillTarget -1 -1 12 as killy
 
 else
     overhead "Out of range" 34
+    if autoReplay = 1
+        wait 1000
+        replay
+    endif
 endif
 
 clearsysmsg 
