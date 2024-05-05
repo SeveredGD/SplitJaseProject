@@ -1,0 +1,685 @@
+overhead "Turned on WizardSpells"
+
+if diffhits >= hpCheckToTriggerGreaterHealSpell and mana > 12
+    script 'HealingAndBuffing'
+elseif inlist myManaVampireTargets myKillTarget 
+    //do nothing
+elseif inlist myManaDrainTargets myKillTarget
+    //do nothing
+//will continue to wizard spells
+
+//wizard grim spells
+    while not dead myKillTarget and find myKillTarget -1 -1 10 as killy
+//necromancy?
+    if castCorpseSkin = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer corpseSkinTimer >= cdCorpseSkin and skill "Necromancy" >= 65 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and necroSymbols > 2 and mana >= manaReserve
+    yell "[CorpseSkin"
+    settimer preventSpamNecroAbilitiesTimer 0
+    settimer corpseSkinTimer 0
+    wait 250
+    cooldown CorpseSkin cdCorpseSkin
+                if gumpexists 622436516
+                    if ingump "12/" 622436516
+                        @setvar! necroSymbols 12
+                    elseif ingump "13/" 622436516
+                        @setvar! necroSymbols 13
+                    elseif ingump "14/" 622436516
+                        @setvar! necroSymbols 14
+                    elseif ingump "15/" 622436516
+                        @setvar! necroSymbols 15
+                    elseif ingump "16/" 622436516
+                        @setvar! necroSymbols 16
+                    elseif ingump "17/" 622436516
+                        @setvar! necroSymbols 17
+                    elseif ingump "18/" 622436516
+                        @setvar! necroSymbols 18
+                    elseif ingump "19/" 622436516
+                        @setvar! necroSymbols 19
+                    elseif ingump "20/" 622436516
+                        @setvar! necroSymbols 20
+                    elseif ingump "21/" 622436516
+                        @setvar! necroSymbols 21
+                    elseif ingump "11/" 622436516
+                        @setvar! necroSymbols 11
+                    elseif ingump "10/" 622436516
+                        @setvar! necroSymbols 10
+                    elseif ingump "9/" 622436516
+                        @setvar! necroSymbols 9
+                    elseif ingump "8/" 622436516
+                        @setvar! necroSymbols 8
+                    elseif ingump "7/" 622436516
+                        @setvar! necroSymbols 7
+                    elseif ingump "6/" 622436516
+                        @setvar! necroSymbols 6
+                    elseif ingump "5/" 622436516
+                        @setvar! necroSymbols 5
+                    elseif ingump "4/" 622436516
+                        @setvar! necroSymbols 4
+                    elseif ingump "3/" 622436516
+                        @setvar! necroSymbols 3
+                    elseif ingump "2/" 622436516
+                        @setvar! necroSymbols 2
+                    elseif ingump "1/" 622436516
+                        @setvar! necroSymbols 1
+                    elseif ingump "0/" 622436516
+                        @setvar! necroSymbols 0
+                    endif
+                endif
+    endif
+
+    if castBloodOath = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and skill "Necromancy" >= 80 and timer bloodOathTimer >= cdBloodOath and 5 < necroSymbols and mana >= manaReserve
+    yell "[BloodOath"
+    settimer preventSpamNecroAbilitiesTimer 0
+    settimer bloodOathTimer 0
+    wait 250
+    if gumpexists 622436516
+        if ingump "12/" 622436516
+            @setvar! necroSymbols 12
+        elseif ingump "13/" 622436516
+            @setvar! necroSymbols 13
+        elseif ingump "14/" 622436516
+            @setvar! necroSymbols 14
+        elseif ingump "15/" 622436516
+            @setvar! necroSymbols 15
+        elseif ingump "16/" 622436516
+            @setvar! necroSymbols 16
+        elseif ingump "17/" 622436516
+            @setvar! necroSymbols 17
+        elseif ingump "18/" 622436516
+            @setvar! necroSymbols 18
+        elseif ingump "19/" 622436516
+            @setvar! necroSymbols 19
+        elseif ingump "20/" 622436516
+            @setvar! necroSymbols 20
+        elseif ingump "21/" 622436516
+            @setvar! necroSymbols 21
+        elseif ingump "11/" 622436516
+            @setvar! necroSymbols 11
+        elseif ingump "10/" 622436516
+            @setvar! necroSymbols 10
+        elseif ingump "9/" 622436516
+            @setvar! necroSymbols 9
+        elseif ingump "8/" 622436516
+            @setvar! necroSymbols 8
+        elseif ingump "7/" 622436516
+            @setvar! necroSymbols 7
+        elseif ingump "6/" 622436516
+            @setvar! necroSymbols 6
+        elseif ingump "5/" 622436516
+            @setvar! necroSymbols 5
+        elseif ingump "4/" 622436516
+            @setvar! necroSymbols 4
+        elseif ingump "3/" 622436516
+            @setvar! necroSymbols 3
+        elseif ingump "2/" 622436516
+            @setvar! necroSymbols 2
+        elseif ingump "1/" 622436516
+            @setvar! necroSymbols 1
+        elseif ingump "0/" 622436516
+            @setvar! necroSymbols 0
+        endif
+    endif
+    endif
+
+    if castEvilOmen = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer evilOmenTimer >= cdEvilOmen and skill "Necromancy" >= 60 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and 2 < necroSymbols and mana >= manaReserve
+    yell "[EvilOmen"
+    settimer evilOmenTimer 0
+    settimer preventSpamNecroAbilitiesTimer 0
+    cooldown EvilOmen cdEvilOmen
+    wait 250
+    if gumpexists 622436516
+        if ingump "12/" 622436516
+            @setvar! necroSymbols 12
+        elseif ingump "13/" 622436516
+            @setvar! necroSymbols 13
+        elseif ingump "14/" 622436516
+            @setvar! necroSymbols 14
+        elseif ingump "15/" 622436516
+            @setvar! necroSymbols 15
+        elseif ingump "16/" 622436516
+            @setvar! necroSymbols 16
+        elseif ingump "17/" 622436516
+            @setvar! necroSymbols 17
+        elseif ingump "18/" 622436516
+            @setvar! necroSymbols 18
+        elseif ingump "19/" 622436516
+            @setvar! necroSymbols 19
+        elseif ingump "20/" 622436516
+            @setvar! necroSymbols 20
+        elseif ingump "21/" 622436516
+            @setvar! necroSymbols 21
+        elseif ingump "11/" 622436516
+            @setvar! necroSymbols 11
+        elseif ingump "10/" 622436516
+            @setvar! necroSymbols 10
+        elseif ingump "9/" 622436516
+            @setvar! necroSymbols 9
+        elseif ingump "8/" 622436516
+            @setvar! necroSymbols 8
+        elseif ingump "7/" 622436516
+            @setvar! necroSymbols 7
+        elseif ingump "6/" 622436516
+            @setvar! necroSymbols 6
+        elseif ingump "5/" 622436516
+            @setvar! necroSymbols 5
+        elseif ingump "4/" 622436516
+            @setvar! necroSymbols 4
+        elseif ingump "3/" 622436516
+            @setvar! necroSymbols 3
+        elseif ingump "2/" 622436516
+            @setvar! necroSymbols 2
+        elseif ingump "1/" 622436516
+            @setvar! necroSymbols 1
+        elseif ingump "0/" 622436516
+            @setvar! necroSymbols 0
+        endif
+    endif
+    endif
+
+    if castVampiricEmbrace = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer vampiricEmbraceTimer >= cdVampiricEmbrace and skill "Necromancy" >= 75 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and 3 < necroSymbols and findtype 8198 ground -1 -1 4 as jorpse
+    yell "[VampiricEmbrace"
+    wft 500
+    target jorpse
+    settimer preventSpamNecroAbilitiesTimer 0
+    settimer vampiricEmbraceTimer 0
+    cooldown VampiricEmbrace cdVampiricEmbrace
+    wait 250
+    if gumpexists 622436516
+        if ingump "12/" 622436516
+            @setvar! necroSymbols 12
+        elseif ingump "13/" 622436516
+            @setvar! necroSymbols 13
+        elseif ingump "14/" 622436516
+            @setvar! necroSymbols 14
+        elseif ingump "15/" 622436516
+            @setvar! necroSymbols 15
+        elseif ingump "16/" 622436516
+            @setvar! necroSymbols 16
+        elseif ingump "17/" 622436516
+            @setvar! necroSymbols 17
+        elseif ingump "18/" 622436516
+            @setvar! necroSymbols 18
+        elseif ingump "19/" 622436516
+            @setvar! necroSymbols 19
+        elseif ingump "20/" 622436516
+            @setvar! necroSymbols 20
+        elseif ingump "21/" 622436516
+            @setvar! necroSymbols 21
+        elseif ingump "11/" 622436516
+            @setvar! necroSymbols 11
+        elseif ingump "10/" 622436516
+            @setvar! necroSymbols 10
+        elseif ingump "9/" 622436516
+            @setvar! necroSymbols 9
+        elseif ingump "8/" 622436516
+            @setvar! necroSymbols 8
+        elseif ingump "7/" 622436516
+            @setvar! necroSymbols 7
+        elseif ingump "6/" 622436516
+            @setvar! necroSymbols 6
+        elseif ingump "5/" 622436516
+            @setvar! necroSymbols 5
+        elseif ingump "4/" 622436516
+            @setvar! necroSymbols 4
+        elseif ingump "3/" 622436516
+            @setvar! necroSymbols 3
+        elseif ingump "2/" 622436516
+            @setvar! necroSymbols 2
+        elseif ingump "1/" 622436516
+            @setvar! necroSymbols 1
+        elseif ingump "0/" 622436516
+            @setvar! necroSymbols 0
+        endif
+    endif
+    endif
+
+    if castPainSpike = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer painSpikeTimer >= cdPainSpike and skill "Necromancy" >= 95 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and 5 < necroSymbols and findtype 8198 ground -1 -1 6 as jorpse
+    yell "[PainSpike"
+    wft 500
+    target myKillTarget
+    wait 200
+    settimer preventSpamNecroAbilitiesTimer 0
+    if insysmsg "You do not see any corpses"
+        // do nothing
+    else
+        settimer painSpikeTimer 0
+        cooldown PainSpike cdPainSpike            
+    endif
+    if gumpexists 622436516
+        if ingump "12/" 622436516
+            @setvar! necroSymbols 12
+        elseif ingump "13/" 622436516
+            @setvar! necroSymbols 13
+        elseif ingump "14/" 622436516
+            @setvar! necroSymbols 14
+        elseif ingump "15/" 622436516
+            @setvar! necroSymbols 15
+        elseif ingump "16/" 622436516
+            @setvar! necroSymbols 16
+        elseif ingump "17/" 622436516
+            @setvar! necroSymbols 17
+        elseif ingump "18/" 622436516
+            @setvar! necroSymbols 18
+        elseif ingump "19/" 622436516
+            @setvar! necroSymbols 19
+        elseif ingump "20/" 622436516
+            @setvar! necroSymbols 20
+        elseif ingump "21/" 622436516
+            @setvar! necroSymbols 21
+        elseif ingump "11/" 622436516
+            @setvar! necroSymbols 11
+        elseif ingump "10/" 622436516
+            @setvar! necroSymbols 10
+        elseif ingump "9/" 622436516
+            @setvar! necroSymbols 9
+        elseif ingump "8/" 622436516
+            @setvar! necroSymbols 8
+        elseif ingump "7/" 622436516
+            @setvar! necroSymbols 7
+        elseif ingump "6/" 622436516
+            @setvar! necroSymbols 6
+        elseif ingump "5/" 622436516
+            @setvar! necroSymbols 5
+        elseif ingump "4/" 622436516
+            @setvar! necroSymbols 4
+        elseif ingump "3/" 622436516
+            @setvar! necroSymbols 3
+        elseif ingump "2/" 622436516
+            @setvar! necroSymbols 2
+        elseif ingump "1/" 622436516
+            @setvar! necroSymbols 1
+        elseif ingump "0/" 622436516
+            @setvar! necroSymbols 0
+        endif
+    endif
+    endif
+        for 5
+
+            if findbuff "bleed" or findbuff "disease"
+                if timer cleansingBrewTimer >= cdCleansingBrew and findtype 50675 backpack 2935 as jrew
+                    dclick jrew
+                    wait minimumWaitForPing 
+                    settimer cleansingBrewTimer 0
+                endif
+            endif
+        
+            if dead myKillTarget
+                break
+            elseif insysmsg "Target cannot be seen." 
+                @setvar! lastCannotBeSeen myKillTarget
+                overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+            if autoReplay = 1
+                wait 500
+                script 'Targetting'
+            endif
+                replay
+            elseif find myKillTarget -1 -1 10 as killy
+                // do nothing - in range to kill
+            else
+                break
+            endif         
+            
+                   
+            if diffhits >= hpCheckToTriggerHealPotion 
+                script 'HealingAndBuffing'
+            endif
+            
+            if diffhits >= hpCheckToTriggerGreaterHealSpell and mana >= 12
+                script 'HealingAndBuffing'
+            endif
+            
+            if poisoned
+                script 'HealingAndBuffing'
+            endif
+
+            if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+                overhead "Eating shrooms" 66
+                dclick mushy
+                @setvar! jase_shrooms mushy
+                wait 200
+                if insysmsg "You consume a magic mushroom and restore some mana."
+                    settimer magicMushroomTimer 0    
+                elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                    settimer magicMushroomTimer 30000
+                endif
+            endif
+            if "discord" in discordDesc
+                @setvar! isDiscorded 1
+            elseif timer meditiationTimer >= 11000 
+                useskill 'Discordance'
+                wft 500
+                if targetexists 
+                    target myKillTarget
+                    overhead "Discorded" 88 myKillTarget
+                endif
+                settimer meditiationTimer 5000
+            endif
+               
+            if index = 0
+                        
+                if castLightning = 1 and diffhits < 30 and mana >= 12 and timer lightningTimer >= cdLightning and timer meditiationTimer >= cdMeditationMini and mana >= manaReserve
+                    while not targetexists harmful
+                        if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                            hotkey '> Interrupt'
+                            break
+                        else
+                            cast 'Lightning'
+                            wait 50
+                        endif 
+                    endwhile
+                    if targetexists harmful
+                        target myKillTarget
+                        settimer lightningTimer 0
+                        cooldown Lightning cdLightning
+                        wait 500
+                    endif
+                endif
+            
+            elseif index = 1
+            
+                if castFireball = 1 and diffhits < 30 and mana >= 12 and timer fireballTimer >= cdFireball and timer meditiationTimer >= cdMeditationMini and mana >= manaReserve
+                    while not targetexists harmful
+                        if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                            hotkey '> Interrupt'
+                            break
+                        else
+                            cast 'fireball'
+                            wait 50
+                        endif 
+                    endwhile
+                    if targetexists harmful
+                        target myKillTarget
+                        settimer fireballTimer 0
+                        cooldown Fireball cdFireball
+                        wait 500
+                    endif
+                endif
+                
+            elseif index = 2
+                if castFireball = 1 and diffhits < 30 and mana >= 12 and timer fireballTimer >= cdFireball and timer meditiationTimer >= cdMeditationMini and mana >= manaReserve
+                    while not targetexists harmful
+                        if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                            hotkey '> Interrupt'
+                            break
+                        else
+                            cast 'fireball'
+                            wait 50
+                        endif 
+                    endwhile
+                    if targetexists harmful
+                        target myKillTarget
+                        settimer fireballTimer 0
+                        cooldown Fireball cdFireball
+                        wait 500
+                    endif
+                endif                
+                
+            elseif index = 3
+
+                if castHarm = 1 and diffhits < 30 and mana >= 9 and timer harmTimer >= cdHarm and timer meditiationTimer >= cdMeditationMini and mana >= manaReserve
+                    while not targetexists harmful
+                        if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                            hotkey '> Interrupt'
+                            break
+                        else
+                            cast 'harm'
+                            wait 50
+                        endif 
+                    endwhile
+                    if targetexists harmful
+                        target myKillTarget
+                        settimer harmTimer 0
+                        cooldown Harm cdHarm
+                        wait 500
+                    endif
+                endif
+            elseif index = 4
+            
+                if castMagicArrow = 1 and diffhits < 30 and mana >= 5 and timer magicArrowTimer >= cdMagicArrow and timer meditiationTimer >= cdMeditationMini and mana >= manaReserve
+                    while not targetexists harmful
+                        if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                            hotkey '> Interrupt'
+                            break
+                        else
+                            cast 'magic arrow'
+                            wait 50
+                        endif 
+                    endwhile
+                    if targetexists harmful
+                        target myKillTarget
+                        settimer magicArrowTimer 0
+                        cooldown MagicArrow cdMagicArrow
+                        wait 500
+                    endif
+                endif
+                
+            endif
+               
+        endfor
+       
+        if find myKillTarget -1 -1 10 as killy
+           // do nothing
+        else
+            overhead "Out of range" 34
+            break
+        endif
+        
+        
+        if diffhits >= hpCheckToTriggerGreaterHealSpell
+        //send to heal script        
+            
+        elseif mana < 55 and findbuff "actively meditating" 
+            // wait for mana
+        elseif timer meditiationTimer < cdMeditationMini and findbuff "actively meditating" 
+            // wait for mana
+        elseif castChainLightning = 1 and timer chainLightningTimer >= cdChainLightning
+            //do nothing
+        elseif castEbolt = 1 and mana >= 32 and mana >= manaReserve
+            //do nothing
+            if castMindBlast = 1 and mana >= 32 and mana >= manaReserve
+                while not targetexists harmful and mana > 30
+                    if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+                        overhead "Eating shrooms" 66
+                        dclick mushy
+                        @setvar! jase_shrooms mushy
+                        wait 200
+                        if insysmsg "You consume a magic mushroom and restore some mana."
+                            settimer magicMushroomTimer 0    
+                        elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                            settimer magicMushroomTimer 30000
+                        endif
+                    endif
+                    if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                        hotkey '> Interrupt'
+                        break
+                    else
+                        cast 'Mind Blast'
+                        wait 50
+                    endif 
+                endwhile
+                if targetexists harmful
+                    target myKillTarget
+                    wait 500
+                    if insysmsg "Target cannot be seen." 
+                        @setvar! lastCannotBeSeen myKillTarget
+                        overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+                        replay
+                    endif
+                endif
+            endif
+            if castFlamestrike = 1 and mana > 42 and mana >= manaReserve
+                while not targetexists harmful and mana > 40
+                
+                    if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+                        overhead "Eating shrooms" 66
+                        dclick mushy
+                        @setvar! jase_shrooms mushy
+                        wait 200
+                        if insysmsg "You consume a magic mushroom and restore some mana."
+                            settimer magicMushroomTimer 0
+                        elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                            settimer magicMushroomTimer 30000    
+                        endif
+                    endif
+            
+                    if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                        hotkey '> Interrupt'
+                        break
+                    else
+                        cast 'Flamestrike'
+                        wait 50
+                    endif 
+                endwhile
+                if targetexists harmful
+                    target myKillTarget
+                    wait 500
+                    if insysmsg "Target cannot be seen." 
+                        @setvar! lastCannotBeSeen myKillTarget
+                        overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+                        replay
+                    endif
+                endif
+            endif
+        elseif castMindBlast = 1 and mana >= 32 and mana >= manaReserve
+            while not targetexists harmful and mana > 30
+                if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+                    overhead "Eating shrooms" 66
+                    dclick mushy
+                    @setvar! jase_shrooms mushy
+                    wait 200
+                    if insysmsg "You consume a magic mushroom and restore some mana."
+                        settimer magicMushroomTimer 0    
+                    elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                        settimer magicMushroomTimer 30000
+                    endif
+                endif
+                if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                    hotkey '> Interrupt'
+                    break
+                else
+                    cast 'Mind Blast'
+                    wait 50
+                endif 
+            endwhile
+            if targetexists harmful
+                target myKillTarget
+                wait 500
+                if insysmsg "Target cannot be seen." 
+                    @setvar! lastCannotBeSeen myKillTarget
+                    overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+                    replay
+                endif
+            endif
+            if castFlamestrike = 1 and mana > 42 and mana >= manaReserve
+                while not targetexists harmful and mana > 40
+                
+                    if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+                        overhead "Eating shrooms" 66
+                        dclick mushy
+                        @setvar! jase_shrooms mushy
+                        wait 200
+                        if insysmsg "You consume a magic mushroom and restore some mana."
+                            settimer magicMushroomTimer 0    
+                        elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                            settimer magicMushroomTimer 30000
+                        endif
+                    endif
+            
+                    if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                        hotkey '> Interrupt'
+                        break
+                    else
+                        cast 'Flamestrike'
+                        wait 50
+                    endif 
+                endwhile
+                if targetexists harmful
+                    target myKillTarget
+                    wait 500
+                    if insysmsg "Target cannot be seen." 
+                        @setvar! lastCannotBeSeen myKillTarget
+                        overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+                        replay
+                    endif
+                endif
+            endif
+        elseif castFlamestrike = 1 and mana > 42 and mana >= manaReserve
+            while not targetexists harmful and mana > 40
+            
+                if diffmana >= 30 and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+                    overhead "Eating shrooms" 66
+                    dclick mushy
+                    @setvar! jase_shrooms mushy
+                    wait 200
+                    if insysmsg "You consume a magic mushroom and restore some mana."
+                        settimer magicMushroomTimer 0    
+                    elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                        settimer magicMushroomTimer 30000
+                    endif
+                endif
+        
+                if followers < breakSpellCastAndResummonIfLessThanXFollowers or dead myKillTarget or diffhits >= hpCheckToTriggerGreaterHealSpell
+                    hotkey '> Interrupt'
+                    break
+                else
+                    cast 'Flamestrike'
+                    wait 50
+                endif 
+            endwhile
+            if targetexists harmful
+                target myKillTarget
+                wait 500
+                if insysmsg "Target cannot be seen." 
+                    @setvar! lastCannotBeSeen myKillTarget
+                    overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+                    replay
+                endif
+            endif
+        elseif not findbuff "actively meditating" and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+            overhead "Eating shrooms" 66
+            dclick mushy
+            @setvar! jase_shrooms mushy
+            wait 200
+            if insysmsg "You consume a magic mushroom and restore some mana."
+                settimer magicMushroomTimer 0    
+            elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                settimer magicMushroomTimer 30000
+            endif
+            elseif not findbuff "actively meditating" and timer meditiationTimer >= cdMeditation and isDiscorded = 1 and isPeaced = 1
+            if followers > 0
+                //do nothing
+            endif
+            useskill 'meditation'
+            settimer meditiationTimer 0
+            wait 500
+        endif
+        wait 50
+endif
+    endwhile
+if autoReplay = 1
+    //overhead 'Autobotting'
+    script 'Targetting'
+endif
+wait 500
+    if targetexists 
+        hotkey 'Cancel Current Target'
+    endif
+    if not findbuff "actively meditating" 
+        if automaticallySkinCorpses = 1 and findtype "corpse" ground -1 -1 2 as jorpse
+            if findtype "Elven Spellblade" backpack
+                while not targetexists neutral
+                    useskill 'forensicevaluation'
+                endwhile
+                if targetexists neutral
+                    hotkey "Target Self"
+                    wait minimumWaitForPing
+                    @ignore jorpse
+                endif
+            endif
+        endif
+        if followers > 0
+            //do nothing
+        endif
+    endif
+else
+script 'Targetting'
+endiff
