@@ -66,7 +66,7 @@ elseif inlist myManaDrainTargets myKillTarget
                 endif
     endif
 
-    if castBloodOath = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and skill "Necromancy" >= 80 and timer bloodOathTimer >= cdBloodOath and 5 < necroSymbols and mana >= manaReserve
+    if castBloodOath = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and skill "Necromancy" >= 80 and timer bloodOathTimer >= cdBloodOath and necroSymbols < 5 and mana >= manaReserve
     yell "[BloodOath"
     settimer preventSpamNecroAbilitiesTimer 0
     settimer bloodOathTimer 0
@@ -120,7 +120,7 @@ elseif inlist myManaDrainTargets myKillTarget
     endif
     endif
 
-    if castEvilOmen = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer evilOmenTimer >= cdEvilOmen and skill "Necromancy" >= 60 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and 2 < necroSymbols and mana >= manaReserve
+    if castEvilOmen = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer evilOmenTimer >= cdEvilOmen and skill "Necromancy" >= 60 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and necroSymbols > 2 and mana >= manaReserve
     yell "[EvilOmen"
     settimer evilOmenTimer 0
     settimer preventSpamNecroAbilitiesTimer 0
@@ -175,7 +175,7 @@ elseif inlist myManaDrainTargets myKillTarget
     endif
     endif
 
-    if castVampiricEmbrace = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer vampiricEmbraceTimer >= cdVampiricEmbrace and skill "Necromancy" >= 75 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and 3 < necroSymbols and findtype 8198 ground -1 -1 4 as jorpse
+    if castVampiricEmbrace = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer vampiricEmbraceTimer >= cdVampiricEmbrace and skill "Necromancy" >= 75 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and necroSymbols < 3 and findtype 8198 ground -1 -1 4 as jorpse
     yell "[VampiricEmbrace"
     wft 500
     target jorpse
@@ -232,7 +232,7 @@ elseif inlist myManaDrainTargets myKillTarget
     endif
     endif
 
-    if castPainSpike = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer painSpikeTimer >= cdPainSpike and skill "Necromancy" >= 95 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and 5 < necroSymbols and findtype 8198 ground -1 -1 6 as jorpse
+    if castPainSpike = 1 and timer preventSpamNecroAbilitiesTimer >= cdPreventSpamNecroAbilities and timer painSpikeTimer >= cdPainSpike and skill "Necromancy" >= 95 and timer jaseowns_SkillTimerCheck >= cdMeditationMini and necroSymbols < 5 and findtype 8198 ground -1 -1 6 as jorpse
     yell "[PainSpike"
     wft 500
     target myKillTarget
