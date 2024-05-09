@@ -1,0 +1,385 @@
+overhead "Turned on Targetting"
+
+//targetting
+if diffhits >= hpCheckToTriggerGreaterHealSpell
+    hotkey '> Interrupt'
+    script "HealingAndBuffing"
+endif
+    #### This will send in pet for out of range targets
+@setvar! patrolPetEvenIfLastTargetIsBeyondEightTiles 1
+
+if counttype "gold coin" backpack as total
+    if diffweight < 10 and 10000 < total
+        overhead "Warning: {{total}} gold and no weight!" 34
+    endif
+endif
+
+if not varexist lastCannotBeSeen
+    @setvar! lastCannotBeSeen 0
+endif
+
+if lastCannotBeSeen != 0 and dead lastCannotBeSeen
+    @setvar! lastCannotBeSeen 0
+    @setvar! lastCannotBeSeenLoopIndex 0
+endif
+
+if targetexists harmful
+    hotkey "Cancel current target"
+endif
+
+if useTargetSystem = 0
+    //say "all kill"
+    wait 200
+    while targetexists 
+        // wait
+        wait 50
+    endwhile
+    
+    @setvar myKillTarget lasttarget 
+elseif useTargetSystem = 1
+    hotkey 'Target Closest Non-Friendly Monster'
+    wait 200
+    if insysmsg "No one matching that was found"
+        if timer preventOverheadSpamTimer >= cdPreventOverheadSpam
+            overhead "found no one" 34
+            @setvar! isDiscorded 1
+            settimer preventOverheadSpamTimer 0
+        endif
+        if autoReplay = 1
+            wait 500
+            replay
+        endif
+        stop
+        elseif not find lasttarget ground -1 -1 12
+    
+        @setvar checkForSummons lasttarget 
+        getlabel checkForSummons checkForSummonsDesc
+
+    
+        if "(summoned" in checkForSummonsDesc or "(bonded" in checkForSummonsDesc in checkForSummonsDesc
+            overhead "▼ Player pet - IGNORE ▼" 77 lasttarget
+            while not targetexists 
+                //hotkey 'Add Target To: IgnoreMobs'
+                wait 200
+            endwhile
+            target myKillTarget 
+            replay
+        endif    
+    
+        overhead "● ▼ OUT OF RANGE ▼ ●" 88 lasttarget
+        if timer preventOverheadSpamTimer >= cdPreventOverheadSpam
+            overhead "Move closer, more then 10 tiles away" 34
+            settimer preventOverheadSpamTimer 0
+        endif
+        if autoReplay = 1
+            wait 500
+            replay
+        endif
+        stop
+    else
+        
+        @setvar checkForSummons lasttarget 
+        getlabel checkForSummons checkForSummonsDesc
+        if "discord" in checkForSummonsDesc
+        @setvar! isDiscorded 1
+        else
+        @setvar! isDiscorded 0
+        endif
+    
+        if "(summoned" in checkForSummonsDesc or "(bonded" in checkForSummonsDesc in checkForSummonsDesc
+            overhead "▼ Player pet - IGNORE ▼" 77 lasttarget
+            while not targetexists 
+                //hotkey 'Add Target To: IgnoreMobs'
+                wait 200
+            endwhile
+            target myKillTarget 
+            replay
+        endif    
+        
+        overhead "● ▼▼ HERE ▼▼ ●" 88 lasttarget
+    endif
+    @setvar myKillTarget lasttarget 
+endif
+
+if not varexist myPreviousKillTarget
+    @setvar myPreviousKillTarget 0     
+endif
+
+getlabel myKillTarget desc
+overhead desc
+
+if "(summoned" in desc or "(bonded" in desc or "(tame" in desc or "the battle trainer" in desc
+    overhead "▼ Player pet - IGNORE ▼" 77 lasttarget
+    while not targetexists 
+        hotkey 'Add Target To: IgnoreMobs'
+        wait 200
+    endwhile
+    target myKillTarget 
+    replay
+endif    
+
+if not listexists myCursedTargets
+    createlist myCursedTargets
+endif
+
+if not listexists myManaDrainTargets
+    createlist myManaDrainTargets
+endif
+
+if not listexists myManaVampireTargets
+    createlist myManaVampireTargets
+endif
+
+if not varexist lastCannotBeSeenLoopIndex
+    @setvar! lastCannotBeSeenLoopIndex 0
+endif
+##############
+####   Target Line of sight check
+##########
+if myKillTarget != 0 and find myKillTarget ground -1 -1 12
+    @setvar jaseowns_KillTarget myKillTarget
+    if jaseowns_KillTarget != jaseowns_LastFocusAggressionTarget
+
+        #  TODO: maybe change to be based on your summon and not just pet
+        if varexist jaseowns_PetOne and find jaseowns_PetOne ground -1 -1 12
+            overhead "� Guarding �" 88 jaseowns_PetOne
+            menu jaseowns_PetOne 3
+        endif
+
+        if timer jaseowns_SkillTimerCheck >= jaseowns_SkillTimerCD
+            settimer jaseowns_SystemMsgCheck 0
+            while timer jaseowns_SystemMsgCheck <= jaseowns_SystemMsgCheckCD
+                if targetexists 'beneficial'
+                    hotkey "Cancel Current Target"
+                elseif not targetexists 'neutral'
+                    overhead "� � Attempting Kill � �" 88 jaseowns_KillTarget
+                    useskill "ArmsLore"
+                    wft 500
+                else
+                    break
+                endif
+            endwhile
+            if targetexists 'neutral'
+                target jaseowns_KillTarget
+                settimer jaseowns_SystemMsgCheck 0
+                while timer jaseowns_SystemMsgCheck <= jaseowns_SystemMsgCheckCD
+                    if insysmsg "You cannot inspect that."
+                        while not targetexists "harmful"
+                            say "ALL KILL" 88
+                            wft 500
+                        endwhile
+                        if targetexists "harmful"
+                            target jaseowns_KillTarget
+                            @setvar! lastCannotBeSeen 0
+                            @setvar! jaseowns_LastFocusAggressionTarget jaseowns_KillTarget
+                            settimer jaseowns_HerdAgainTimer 0
+                            @setvar! jaseowns_DiscordThisTarget jaseowns_KillTarget
+                            break
+                        endif
+                    elseif insysmsg "Target cannot be seen"
+#                        overhead "Cannot be seen inside the arms lore check"
+#                        sysmsg "Cannot be seen inside the arms lore check"
+                        @setvar! lastCannotBeSeen myKillTarget
+                    else
+#                        overhead "some other reason" 11
+#                        sysmsg "some other reason" 11
+#                        @setvar! lastCannotBeSeen myKillTarget
+                    endif
+                endwhile
+            endif
+        endif
+    endif
+endif
+
+
+if lastCannotBeSeen = myKillTarget
+    if timer preventOverheadSpamTimer >= cdPreventOverheadSpam
+        overhead "Target not seen, waiting.."  34
+        settimer preventOverheadSpamTimer 0
+    endif
+    wait 200
+    replay
+elseif find myKillTarget -1 -1 10 as killy
+        if followers >= 1 and mana >= manaReserve
+            //do nothing
+        elseif followers >= 1 and mana <= manaReserve
+        say 'All guard me'
+        endif
+        while mana <= manaReserve
+            if not findbuff "actively meditating" and timer magicMushroomTimer >= cdMushroom and findtype "mushroom" backpack as mushy
+        
+        overhead "Eating shrooms from target" 66
+                        dclick mushy
+                        @setvar! jase_shrooms mushy
+                        wait 200
+                        if insysmsg "You consume a magic mushroom and restore some mana."
+                            settimer magicMushroomTimer 0    
+                        elseif insysmsg "before you may consume another magic mushroom" or insysmsg "been in combat with another"
+                            settimer magicMushroomTimer 30000
+                        endif
+                    elseif not findbuff "actively meditating" and timer meditiationTimer >= cdMeditation
+                        if followers > 0
+                            //do nothing
+                        endif
+                    useskill 'meditation'
+                    settimer meditiationTimer 0
+                    wait 500
+        
+            endif
+        endwhile
+    if myKillTarget = myPreviousKillTarget
+// do nothing
+    else
+        
+        ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
+        if DexxerTamerClass = 1
+        overhead "Moving to BandageScript"
+           script "BandageChivAndVet"
+        endif
+        ######################################### CLASS CHECK SEND TO ANOTHER SCRIPT
+        ### If cursed and drained send back to spells
+
+        if inlist myManaVampireTargets myKillTarget
+            overhead "We already mana vampired this guy" 88
+            // do nothing
+        elseif castManaVampire = 0
+            // do nothing 
+        elseif mana >= manaReserve
+            while not targetexists harmful
+                if dead myKillTarget
+                    hotkey '> Interrupt'
+                    break
+                elseif diffhits < 30
+                    cast 'mana vampire'
+                    wait 50
+                elseif diffhits >= hpCheckToTriggerGreaterHealSpell or dead myKillTarget
+                    hotkey '> Interrupt'
+                    break
+                endif
+            endwhile
+            if targetexists harmful
+                target myKillTarget
+                pushlist myManaVampireTargets myKillTarget
+                settimer killTargetTimer 0
+                wait 500
+                if insysmsg "Target cannot be seen." 
+                    @setvar! lastCannotBeSeen myKillTarget
+                    overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+                    replay
+                endif
+            endif
+            if targetexists harmful
+                hotkey "Cancel current target"
+            endif
+        endif
+        
+        if inlist myManaDrainTargets myKillTarget
+            overhead "We already mana drained this guy" 88
+            // do nothing
+        elseif castManadrain = 0
+            // do nothing 
+        elseif mana >= manaReserve
+            while not targetexists harmful
+                if dead myKillTarget
+                    hotkey '> Interrupt'
+                    break
+                elseif diffhits < 30
+                    cast 'mana drain'
+                    wait 50
+                elseif diffhits >= hpCheckToTriggerGreaterHealSpell or dead myKillTarget
+                    hotkey '> Interrupt'
+                    script "HealingAndBuffing"
+                    break
+                endif
+            endwhile
+            if targetexists harmful
+                target myKillTarget
+                pushlist myManaDrainTargets myKillTarget
+                settimer killTargetTimer 0
+                wait 500
+                if insysmsg "Target cannot be seen." 
+                    @setvar! lastCannotBeSeen myKillTarget
+                    overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+                    replay
+                endif
+            endif
+            if targetexists harmful
+                hotkey "Cancel current target"
+            endif
+        endif
+        
+        if inlist myCursedTargets myKillTarget
+            overhead "We already cursed this guy" 88
+            // do nothing
+        elseif castCurse = 0
+            // do nothing
+        elseif mana >= manaReserve
+            while not targetexists harmful and not dead myKillTarget
+                if diffhits < 30
+                    cast 'Curse'
+                    wait 50
+                elseif diffhits >= hpCheckToTriggerGreaterHealSpell
+                    hotkey '> Interrupt'
+                    script "HealingAndBuffing"
+                    break
+                endif
+            endwhile
+            if targetexists harmful
+                target myKillTarget
+                pushlist myCursedTargets myKillTarget
+                settimer killTargetTimer 0
+                wait 500
+                if insysmsg "Target cannot be seen." 
+                    @setvar! lastCannotBeSeen myKillTarget
+                    overhead "CANNOT BE SEEN MOVE TO NEXT TARGET" 34
+                    replay
+                endif
+            else
+                hotkey '> Interrupt'
+                script 'WizardSpells'
+            endif
+            if targetexists harmful
+                hotkey "Cancel current target"
+            endif
+        endif
+        @setvar myPreviousKillTarget myKillTarget
+    endif
+    //overhead "Sending to Wizard spells"
+    script 'WizardSpells'
+
+else
+    overhead "Out of range" 34
+    if autoReplay = 1
+        wait 1000
+        replay
+    endif
+endif
+
+clearsysmsg 
+
+@setvar! isLethalPoison 0
+@setvar! isHerded 0
+
+if skill "Peacemaking" >= 50 
+    @setvar! isPeaced 0
+else
+    @setvar! isPeaced 1    
+endif
+
+if skill "Discordance" >= 50 
+  @setvar! isDiscorded 0
+else
+  @setvar! isDiscorded 1  
+endif
+
+if timer killTargetTimer >= cdKillTarget
+    overhead "We cleared curse and mana drain targets" 34
+    removelist myCursedTargets      
+    removelist myManaDrainTargets
+    removelist myManaVampireTargets
+endif
+
+if autoReplay = 1
+    wait 500
+    replay
+endif
