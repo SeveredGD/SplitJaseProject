@@ -339,10 +339,10 @@ elseif find myKillTarget -1 -1 10 as killy
                 endif
             else
                 hotkey '> Interrupt'
-                    if NecromancerClass 1 or TamerMageClass 1
+                    if NecromancerClass = 1 or TamerMageClass = 1
                         script 'WizardSpells'
                         overhead 'Wizardspells'
-                    elseif DexxerTamerClass 1 or DexxerClass 1
+                    elseif DexxerTamerClass = 1 or DexxerClass = 1
                         script 'BandageChivAndVet'
                     overhead 'bandageandchiv' 
                     endif
