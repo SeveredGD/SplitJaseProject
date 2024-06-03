@@ -133,64 +133,6 @@ endif
 if not varexist lastCannotBeSeenLoopIndex
     @setvar! lastCannotBeSeenLoopIndex 0
 endif
-##############
-####   Target Line of sight check
-##########
-if myKillTarget != 0 and find myKillTarget ground -1 -1 12
-    @setvar jaseowns_KillTarget myKillTarget
-    if jaseowns_KillTarget != jaseowns_LastFocusAggressionTarget
-
-        #  TODO: maybe change to be based on your summon and not just pet
-        if varexist jaseowns_PetOne and find jaseowns_PetOne ground -1 -1 12
-            overhead "� Guarding �" 88 jaseowns_PetOne
-            menu jaseowns_PetOne 3
-        endif
-
-        if timer jaseowns_SkillTimerCheck >= jaseowns_SkillTimerCD
-            settimer jaseowns_SystemMsgCheck 0
-            while timer jaseowns_SystemMsgCheck <= jaseowns_SystemMsgCheckCD
-                if targetexists 'beneficial'
-                    hotkey "Cancel Current Target"
-                elseif not targetexists 'neutral'
-                    overhead "� � Attempting Kill � �" 88 jaseowns_KillTarget
-                    useskill "ArmsLore"
-                    wft 500
-                else
-                    break
-                endif
-            endwhile
-            if targetexists 'neutral'
-                target jaseowns_KillTarget
-                settimer jaseowns_SystemMsgCheck 0
-                while timer jaseowns_SystemMsgCheck <= jaseowns_SystemMsgCheckCD
-                    if insysmsg "You cannot inspect that."
-                        while not targetexists "harmful"
-                            say "ALL KILL" 88
-                            wft 500
-                        endwhile
-                        if targetexists "harmful"
-                            target jaseowns_KillTarget
-                            @setvar! lastCannotBeSeen 0
-                            @setvar! jaseowns_LastFocusAggressionTarget jaseowns_KillTarget
-                            settimer jaseowns_HerdAgainTimer 0
-                            @setvar! jaseowns_DiscordThisTarget jaseowns_KillTarget
-                            break
-                        endif
-                    elseif insysmsg "Target cannot be seen"
-#                        overhead "Cannot be seen inside the arms lore check"
-#                        sysmsg "Cannot be seen inside the arms lore check"
-                        @setvar! lastCannotBeSeen myKillTarget
-                    else
-#                        overhead "some other reason" 11
-#                        sysmsg "some other reason" 11
-#                        @setvar! lastCannotBeSeen myKillTarget
-                    endif
-                endwhile
-            endif
-        endif
-    endif
-endif
-
 
 if lastCannotBeSeen = myKillTarget
     if timer preventOverheadSpamTimer >= cdPreventOverheadSpam
