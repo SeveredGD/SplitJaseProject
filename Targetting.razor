@@ -139,8 +139,17 @@ if lastCannotBeSeen = myKillTarget
         overhead "Target not seen, waiting.."  34
         settimer preventOverheadSpamTimer 0
     endif
-    wait 200
-    replay
+    wait 100
+    //overhead "{{lastCannotBeSeenLoopIndex}} : {{retryBasedOnTargetNotSeenTimer}}"
+    if lastCannotBeSeenLoopIndex = 0
+        @setvar! lastCannotBeSeenLoopIndex 1
+    endif
+    if timer retryBasedOnTargetNotSeenTimer >= cdRetryBasedOnTargetNotSeen
+        settimer retryBasedOnTargetNotSeenTimer 0    
+        @setvar! lastCannotBeSeen 0
+    else
+        replay
+    endif
 elseif find myKillTarget -1 -1 10 as killy
         if followers >= 1 and mana >= manaReserve
             //do nothing
