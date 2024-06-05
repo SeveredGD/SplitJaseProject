@@ -133,23 +133,18 @@ endif
 if not varexist lastCannotBeSeenLoopIndex
     @setvar! lastCannotBeSeenLoopIndex 0
 endif
+##############
+####   Target Line of sight check
+##########
+
 
 if lastCannotBeSeen = myKillTarget
     if timer preventOverheadSpamTimer >= cdPreventOverheadSpam
         overhead "Target not seen, waiting.."  34
         settimer preventOverheadSpamTimer 0
     endif
-    wait 100
-    //overhead "{{lastCannotBeSeenLoopIndex}} : {{retryBasedOnTargetNotSeenTimer}}"
-    if lastCannotBeSeenLoopIndex = 0
-        @setvar! lastCannotBeSeenLoopIndex 1
-    endif
-    if timer retryBasedOnTargetNotSeenTimer >= cdRetryBasedOnTargetNotSeen
-        settimer retryBasedOnTargetNotSeenTimer 0    
-        @setvar! lastCannotBeSeen 0
-    else
-        replay
-    endif
+    wait 200
+    replay
 elseif find myKillTarget -1 -1 10 as killy
         if followers >= 1 and mana >= manaReserve
             //do nothing
@@ -300,9 +295,6 @@ elseif find myKillTarget -1 -1 10 as killy
 
 else
     overhead "Out of range" 34
-    if autoReplay = 1
-        wait 1000
-        replay
     endif
 endif
 
