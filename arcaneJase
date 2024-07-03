@@ -2,6 +2,9 @@ removelist jaseowns_PreviousScript
 createlist jaseowns_PreviousScript
 pushlist jaseowns_PreviousScript "Play Script: Mage\MageBotTamer"
 
+if jaseowns_DEBUG_MODE = 1
+    overhead "ran through vars again?"
+endif
 #####################
 overhead "Newer Mage Bot" 76
 overhead "WAR mode to fight stuff" 34
@@ -12,6 +15,9 @@ overhead "PEACE to run around 7.2" 89
 ## No message = 0
 ### 
 @setvar! jaseowns_DEBUG_MODE 0
+if jaseowns_DEBUG_MODE = 1
+    overhead "ran through vars again?"
+endif
 
 ####
 ##  Override current target while casting
@@ -244,7 +250,7 @@ overhead "PEACE to run around 7.2" 89
 # Flamestrike
 @setvar! jaseowns_CastFlamestrike 1
 @setvar! jaseowns_CastFlamestrikeTimerCD 0  
-@setvar! jaseowns_CastFlamestrikeMinMana 70
+@setvar! jaseowns_CastFlamestrikeMinMana 40
 
 # ManaVampire
 @setvar! jaseowns_CastManaVampire 0
@@ -643,15 +649,7 @@ while not dead
     if weight >= maxweight and not findbuff "strength" and jaseowns_AutomaticallyDrinkStrPotIfOverWeight = 1 and findtype "white potion" backpack as jaseowns_Pot
         dclick jaseowns_Pot
         wait 200
-    endif
-
-    if followers < jaseowns_CastToMaxFollowers and jaseowns_SUMMONER_MAYBE = 1
-        if jaseowns_DEBUG_MODE = 1
-            sysmsg "Summon pets!"
-        endif
-        @setvar! jaseowns_BOT_STATE 15
-    endif
-    
+    endif   
     # Eat food if we got it
     if not findbuff "food" and findtype "tray" backpack as jaseowns_FoodBuff
         dclick jaseowns_FoodBuff
@@ -674,23 +672,6 @@ while not dead
         endif
         settimer jaseowns_BOT_TARGET_SELECTED_TIMER 0
     endif 
-
-    if not queued and jaseowns_UseSkinningKnifeAutomatically = 1 and findtype 11552 backpack as jaseowns_SkinningKnife
-        if findbuff "Actively Meditating"
-            //do nothing
-        elseif findtype 8198 ground -1 -1 2 as jorpse
-            while not targetexists 
-                dclick jaseowns_SkinningKnife
-                wft 500
-            endwhile
-            while targetexists 
-                hotkey "Target Self"
-                getlabel backpack jaseowns_PingCheck
-            endwhile
-            @ignore jorpse
-        endif
-    endif
-
 
 ### Paralyze check
 
@@ -1064,7 +1045,7 @@ while not dead
         elseif jaseowns_HoldingHealForSomeReason = 0
             
             // necro mancy
-            if skill "Necromancy" >= 50
+            if skill "Necromancy" >= 130
                 if not gumpexists 622436516 
                     say '[NecromancyHotbar'
                     getlabel backpack jaseowns_PingCheck
